@@ -1,0 +1,286 @@
+<!-- I am declaring the document type as HTML5. -->
+<!DOCTYPE html>
+<!-- I am opening the HTML element and setting the language. -->
+<html lang="en">
+<!-- I am opening the head section. -->
+<head>
+    <!-- I am defining the character set as UTF-8. -->
+    <meta charset="UTF-8">
+    <!-- I am configuring the viewport for responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- I am setting the title of the dashboard. -->
+    <title>Nexus | Dashboard</title>
+    <!-- I am importing the Outfit font for a premium look. -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- I am importing FontAwesome icons. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- I am linking the global stylesheet. -->
+    <link rel="stylesheet" href="public/css/style.css">
+    <!-- I am linking the specific Kanban board stylesheet. -->
+    <link rel="stylesheet" href="public/css/board.css">
+<!-- I am closing the head section. -->
+</head>
+<!-- I am opening the body element. -->
+<body>
+    <!-- I am adding animated background blobs for depth. -->
+    <div class="bg-blobs">
+        <!-- I am placing the first background blob. -->
+        <div class="blob blob-1"></div>
+        <!-- I am placing the second background blob. -->
+        <div class="blob blob-2"></div>
+    <!-- I am closing the blobs container. -->
+    </div>
+
+    <!-- I am creating a modern, sleek navigation bar. -->
+    <nav class="navbar glass-panel-dark">
+        <!-- I am creating a container for the brand logo. -->
+        <div class="brand">
+            <!-- I am adding the brand icon. -->
+            <i class="fa-solid fa-layer-group logo-icon-small"></i>
+            <!-- I am adding the brand name text. -->
+            <span class="brand-text">Nexus</span>
+        <!-- I am closing the brand container. -->
+        </div>
+        
+        <!-- I am creating a container for the search bar. -->
+        <div class="search-container">
+            <!-- I am adding a search icon. -->
+            <i class="fa-solid fa-search"></i>
+            <!-- I am adding the search input field. -->
+            <input type="text" id="task-search" placeholder="Search tasks..." class="modern-input search-input">
+        <!-- I am closing the search container. -->
+        </div>
+
+        <!-- I am creating a container for user controls. -->
+        <div class="user-controls">
+            <!-- I am adding an icon next to the user's name. -->
+            <i class="fa-regular fa-circle-user avatar-icon"></i>
+            <!-- I am adding a span to display the user's name. -->
+            <span id="user-display-name"></span>
+            <!-- I am adding a stylish logout button. -->
+            <button id="logout-btn" class="btn-outline"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        <!-- I am closing the user controls container. -->
+        </div>
+    <!-- I am closing the navigation bar. -->
+    </nav>
+
+    <!-- I am creating the main dashboard layout wrapper. -->
+    <main class="dashboard-wrapper">
+        <!-- I am creating a glassmorphic sidebar for projects. -->
+        <aside class="sidebar glass-panel">
+            <!-- I am adding a section header for the project list. -->
+            <div class="sidebar-header">
+                <!-- I am adding a folder icon to the header. -->
+                <i class="fa-regular fa-folder-open"></i>
+                <!-- I am setting the header text. -->
+                <h3>Workspaces</h3>
+            <!-- I am closing the sidebar header. -->
+            </div>
+            
+            <!-- I am creating an unordered list to hold dynamic projects. -->
+            <ul id="project-list" class="custom-scrollbar"></ul>
+            
+            <!-- I am adding a section to create a new project. -->
+            <div class="create-project">
+                <!-- I am adding an input field for the new project name. -->
+                <input type="text" id="new-project-name" placeholder="New Project..." class="modern-input">
+                <!-- I am adding a button to trigger project creation. -->
+                <button id="create-project-btn" class="btn-glow-small"><i class="fa-solid fa-plus"></i></button>
+            <!-- I am closing the create project section. -->
+            </div>
+        <!-- I am closing the sidebar. -->
+        </aside>
+
+        <!-- I am creating the main area for the Kanban board. -->
+        <section class="board-area">
+            <!-- I am creating a header for the active project's board. -->
+            <div class="board-header glass-panel">
+                <!-- I am creating a container for the project title. -->
+                <div class="title-group">
+                    <!-- I am adding an icon next to the title. -->
+                    <i class="fa-solid fa-rocket header-icon"></i>
+                    <!-- I am adding an empty h2 to be populated with the project name. -->
+                    <h2 id="active-project-title">Select a Workspace</h2>
+                <!-- I am closing the title group. -->
+                </div>
+                <!-- I am adding a premium button to create new tasks. -->
+                <button id="add-task-btn" class="btn-glow" style="display: none;"><i class="fa-solid fa-plus"></i> Create Task</button>
+            <!-- I am closing the board header. -->
+            </div>
+
+            <!-- I am creating the main container for the Kanban columns. -->
+            <div class="kanban-board custom-scrollbar" id="kanban-board" style="display: none;">
+                
+                <!-- I am creating the To-Do column container. -->
+                <div class="column-wrapper">
+                    <!-- I am adding the column header for To-Do. -->
+                    <div class="column-header">
+                        <!-- I am adding an indicator dot for To-Do status. -->
+                        <span class="status-dot dot-todo"></span>
+                        <!-- I am adding the column title. -->
+                        <h3>To Do</h3>
+                    <!-- I am closing the column header. -->
+                    </div>
+                    <!-- I am creating the actual drop zone for To-Do tasks. -->
+                    <div class="column glass-panel custom-scrollbar" id="col-todo" data-status="To-Do">
+                        <!-- I am creating the container that holds the task cards. -->
+                        <div class="task-list" id="list-todo"></div>
+                    <!-- I am closing the drop zone. -->
+                    </div>
+                <!-- I am closing the column wrapper. -->
+                </div>
+
+                <!-- I am creating the In Progress column container. -->
+                <div class="column-wrapper">
+                    <!-- I am adding the column header for In Progress. -->
+                    <div class="column-header">
+                        <!-- I am adding an indicator dot for In Progress status. -->
+                        <span class="status-dot dot-progress"></span>
+                        <!-- I am adding the column title. -->
+                        <h3>In Progress</h3>
+                    <!-- I am closing the column header. -->
+                    </div>
+                    <!-- I am creating the actual drop zone for In Progress tasks. -->
+                    <div class="column glass-panel custom-scrollbar" id="col-in-progress" data-status="In Progress">
+                        <!-- I am creating the container that holds the task cards. -->
+                        <div class="task-list" id="list-in-progress"></div>
+                    <!-- I am closing the drop zone. -->
+                    </div>
+                <!-- I am closing the column wrapper. -->
+                </div>
+
+                <!-- I am creating the Done column container. -->
+                <div class="column-wrapper">
+                    <!-- I am adding the column header for Done. -->
+                    <div class="column-header" style="display: flex; justify-content: space-between; align-items: center;">
+                        <!-- I am creating a flex wrapper for title and dot. -->
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <!-- I am adding an indicator dot for Done status. -->
+                            <span class="status-dot dot-done"></span>
+                            <!-- I am adding the column title. -->
+                            <h3 style="margin: 0;">Done</h3>
+                        </div>
+                        <!-- I am adding a clear button. -->
+                        <button id="clear-done-btn" class="btn-outline" style="font-size: 0.8rem; padding: 5px 10px; border-color: #ef476f; color: #ef476f;">Clear All</button>
+                    <!-- I am closing the column header. -->
+                    </div>
+                    <!-- I am creating the actual drop zone for Done tasks. -->
+                    <div class="column glass-panel custom-scrollbar" id="col-done" data-status="Done">
+                        <!-- I am creating the container that holds the task cards. -->
+                        <div class="task-list" id="list-done"></div>
+                    <!-- I am closing the drop zone. -->
+                    </div>
+                <!-- I am closing the column wrapper. -->
+                </div>
+                
+            <!-- I am closing the kanban board container. -->
+            </div>
+        <!-- I am closing the board area section. -->
+        </section>
+    <!-- I am closing the dashboard wrapper. -->
+    </main>
+
+    <!-- I am creating the Task Creation Modal (hidden by default). -->
+    <div id="create-task-modal" class="modal-overlay" style="display: none;">
+        <!-- I am creating the glass panel for the modal content. -->
+        <div class="modal-content glass-panel">
+            <!-- I am adding a close button for the modal. -->
+            <button class="close-modal-btn"><i class="fa-solid fa-times"></i></button>
+            <!-- I am adding a title to the modal. -->
+            <h2>Create New Task</h2>
+            <!-- I am creating a form for task details. -->
+            <form id="create-task-form" class="modern-form" style="margin-top: 20px;">
+                <!-- I am adding the task title input. -->
+                <input type="text" id="task-title" placeholder="Task Title" class="modern-input" required>
+                <!-- I am adding the task description textarea. -->
+                <textarea id="task-desc" placeholder="Task Description" class="modern-input" rows="3"></textarea>
+                <!-- I am adding a priority select dropdown. -->
+                <select id="task-priority" class="modern-input">
+                    <!-- I am adding priority options. -->
+                    <option value="Low">Low Priority</option>
+                    <option value="Medium" selected>Medium Priority</option>
+                    <option value="High">High Priority</option>
+                <!-- I am closing the select. -->
+                </select>
+                <!-- I am adding the due date input. -->
+                <input type="date" id="task-due-date" class="modern-input">
+                <!-- I am adding the submit button. -->
+                <button type="submit" class="btn-glow">Create Task</button>
+            <!-- I am closing the form. -->
+            </form>
+        <!-- I am closing the modal content. -->
+        </div>
+    <!-- I am closing the task creation modal. -->
+    </div>
+
+    <!-- I am creating the Task Details Modal (hidden by default). -->
+    <div id="task-details-modal" class="modal-overlay" style="display: none;">
+        <!-- I am creating the glass panel for the modal content. -->
+        <div class="modal-content glass-panel">
+            <!-- I am adding a close button for the modal. -->
+            <button class="close-details-btn"><i class="fa-solid fa-times"></i></button>
+            <!-- I am adding a container for the priority badge. -->
+            <div id="details-priority-badge" class="priority-badge"></div>
+            <!-- I am adding a title to the modal. -->
+            <h2 id="details-title" style="margin-top: 15px;"></h2>
+            <!-- I am adding a paragraph for the task description. -->
+            <p id="details-desc" style="color: var(--text-secondary); margin-top: 15px;"></p>
+            <!-- I am adding a paragraph for the due date. -->
+            <p id="details-due" style="color: #ef476f; margin-top: 15px; font-weight: bold;"></p>
+            <!-- I am adding a paragraph for the creation date. -->
+            <p id="details-date" style="color: var(--text-secondary); margin-top: 15px; font-size: 0.85rem;"></p>
+            <!-- I am adding an edit button inside the details modal. -->
+            <button id="edit-task-btn" class="btn-glow-small" style="margin-top: 20px; width: 100%;">Edit Task</button>
+        <!-- I am closing the modal content. -->
+        </div>
+    <!-- I am closing the task details modal. -->
+    </div>
+
+    <!-- I am creating the Edit Task Modal (hidden by default). -->
+    <div id="edit-task-modal" class="modal-overlay" style="display: none;">
+        <!-- I am creating the glass panel for the modal content. -->
+        <div class="modal-content glass-panel">
+            <!-- I am adding a close button for the modal. -->
+            <button class="close-edit-btn"><i class="fa-solid fa-times"></i></button>
+            <!-- I am adding a title to the modal. -->
+            <h2>Edit Task</h2>
+            <!-- I am creating a form for editing task details. -->
+            <form id="edit-task-form" class="modern-form" style="margin-top: 20px;">
+                <!-- I am adding a hidden input to store task ID. -->
+                <input type="hidden" id="edit-task-id">
+                <!-- I am adding the task title input. -->
+                <input type="text" id="edit-task-title" placeholder="Task Title" class="modern-input" required>
+                <!-- I am adding the task description textarea. -->
+                <textarea id="edit-task-desc" placeholder="Task Description" class="modern-input" rows="3"></textarea>
+                <!-- I am adding a priority select dropdown. -->
+                <select id="edit-task-priority" class="modern-input">
+                    <!-- I am adding priority options. -->
+                    <option value="Low">Low Priority</option>
+                    <option value="Medium">Medium Priority</option>
+                    <option value="High">High Priority</option>
+                <!-- I am closing the select. -->
+                </select>
+                <!-- I am adding the due date input. -->
+                <input type="date" id="edit-task-due-date" class="modern-input">
+                <!-- I am adding the submit button. -->
+                <button type="submit" class="btn-glow">Save Changes</button>
+            <!-- I am closing the form. -->
+            </form>
+        <!-- I am closing the modal content. -->
+        </div>
+    <!-- I am closing the edit task modal. -->
+    </div>
+
+    <!-- I am importing the Socket.io client script via CDN. -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    
+    <!-- I am importing the global app state script. -->
+    <script src="public/js/app.js"></script>
+    <!-- I am importing the script to handle real-time socket events. -->
+    <script src="public/js/socket-client.js"></script>
+    <!-- I am importing the script to handle fetching, rendering, and drag-and-drop of tasks. -->
+    <script src="public/js/board.js"></script>
+<!-- I am closing the body element. -->
+</body>
+<!-- I am closing the HTML tag. -->
+</html>

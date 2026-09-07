@@ -1,0 +1,492 @@
+/* --- I am styling the Navbar Layout --- */
+/* I am styling the navigation bar container. */
+.navbar {
+/* I am using flexbox for the layout. */
+    display: flex;
+/* I am pushing the brand to the left and user controls to the right. */
+    justify-content: space-between;
+/* I am centering items vertically. */
+    align-items: center;
+/* I am adding padding inside the navbar. */
+    padding: 15px 30px;
+/* I am ensuring the navbar stays at the top. */
+    position: sticky;
+/* I am setting the top coordinate. */
+    top: 0;
+/* I am setting a high z-index so it stays above content. */
+    z-index: 100;
+/* I am closing the navbar style. */
+}
+/* I am styling the brand container in the navbar. */
+.brand {
+/* I am using flexbox to align the icon and text. */
+    display: flex;
+/* I am centering vertically. */
+    align-items: center;
+/* I am adding a gap between them. */
+    gap: 10px;
+/* I am setting the font size. */
+    font-size: 1.2rem;
+/* I am making the text bold. */
+    font-weight: 700;
+/* I am closing the brand style. */
+}
+/* I am styling the small logo icon. */
+.logo-icon-small {
+/* I am setting its color. */
+    color: var(--primary);
+/* I am closing the logo-icon-small style. */
+}
+/* I am styling the user controls section. */
+.user-controls {
+/* I am using flexbox. */
+    display: flex;
+/* I am centering vertically. */
+    align-items: center;
+/* I am adding a gap between elements. */
+    gap: 15px;
+/* I am setting the text color. */
+    color: var(--text-secondary);
+/* I am closing the user-controls style. */
+}
+/* I am styling the avatar icon. */
+.avatar-icon {
+/* I am making the avatar icon slightly larger. */
+    font-size: 1.2rem;
+/* I am closing the avatar-icon style. */
+}
+
+/* --- I am styling the Main Dashboard Layout --- */
+/* I am styling the dashboard wrapper. */
+.dashboard-wrapper {
+/* I am using grid layout to create a sidebar and main area. */
+    display: grid;
+/* I am defining the columns: 260px for sidebar, the rest for the board. */
+    grid-template-columns: 260px 1fr;
+/* I am making it take the full height minus the navbar height roughly. */
+    height: calc(100vh - 70px);
+/* I am adding padding around the layout. */
+    padding: 20px;
+/* I am adding a gap between the sidebar and the board area. */
+    gap: 20px;
+/* I am closing the dashboard-wrapper style. */
+}
+
+/* --- I am styling the Sidebar --- */
+/* I am styling the sidebar container. */
+.sidebar {
+/* I am using flexbox in column direction. */
+    display: flex;
+/* I am setting column direction. */
+    flex-direction: column;
+/* I am adding internal padding. */
+    padding: 20px;
+/* I am hiding overflow to keep it neat. */
+    overflow: hidden;
+/* I am closing the sidebar style. */
+}
+/* I am styling the sidebar header. */
+.sidebar-header {
+/* I am using flexbox. */
+    display: flex;
+/* I am centering vertically. */
+    align-items: center;
+/* I am adding a gap. */
+    gap: 10px;
+/* I am adding bottom margin. */
+    margin-bottom: 20px;
+/* I am setting text color. */
+    color: var(--text-secondary);
+/* I am closing the sidebar-header style. */
+}
+/* I am styling the h3 in the sidebar header. */
+.sidebar-header h3 {
+/* I am setting font size. */
+    font-size: 0.9rem;
+/* I am transforming text to uppercase. */
+    text-transform: uppercase;
+/* I am setting letter spacing for a modern look. */
+    letter-spacing: 1px;
+/* I am setting font weight. */
+    font-weight: 600;
+/* I am closing the h3 style. */
+}
+/* I am styling the project list container. */
+#project-list {
+/* I am removing default list styles. */
+    list-style: none;
+/* I am allowing it to flex-grow and take available space. */
+    flex-grow: 1;
+/* I am enabling vertical scrolling if projects overflow. */
+    overflow-y: auto;
+/* I am closing the project-list style. */
+}
+/* I am styling individual project items. */
+.project-item {
+/* I am adding padding. */
+    padding: 10px 15px;
+/* I am adding bottom margin. */
+    margin-bottom: 5px;
+/* I am rounding corners. */
+    border-radius: 8px;
+/* I am changing cursor to pointer. */
+    cursor: pointer;
+/* I am adding a transition for hover effects. */
+    transition: all 0.2s ease;
+/* I am setting text color. */
+    color: var(--text-secondary);
+/* I am using flexbox for better alignment of the delete button. */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+/* I am closing the project-item style. */
+}
+/* I am styling the hover state of project items. */
+.project-item:hover {
+/* I am applying a translucent background on hover. */
+    background: rgba(255, 255, 255, 0.05);
+/* I am changing text color to white. */
+    color: white;
+/* I am closing the hover style. */
+}
+/* I am styling the active project item. */
+.project-item.active {
+/* I am applying a strong gradient background for the active item. */
+    background: var(--gradient);
+/* I am setting text to white. */
+    color: white;
+/* I am making font bolder. */
+    font-weight: 500;
+/* I am closing the active style. */
+}
+/* I am styling the create project section at the bottom of the sidebar. */
+.create-project {
+/* I am using flexbox. */
+    display: flex;
+/* I am adding a gap between input and button. */
+    gap: 10px;
+/* I am adding top margin to separate from the list. */
+    margin-top: 20px;
+/* I am adding a top border to distinguish the section. */
+    border-top: 1px solid var(--border);
+/* I am adding padding above the section. */
+    padding-top: 20px;
+/* I am closing the create-project style. */
+}
+
+/* --- I am styling the Board Area --- */
+/* I am styling the main board section. */
+.board-area {
+/* I am using flexbox column layout. */
+    display: flex;
+/* I am setting column direction. */
+    flex-direction: column;
+/* I am adding a gap between header and columns. */
+    gap: 20px;
+/* I am closing the board-area style. */
+}
+/* I am styling the board header. */
+.board-header {
+/* I am using flexbox. */
+    display: flex;
+/* I am pushing title to left, button to right. */
+    justify-content: space-between;
+/* I am centering vertically. */
+    align-items: center;
+/* I am adding padding. */
+    padding: 15px 25px;
+/* I am closing the board-header style. */
+}
+/* I am styling the title group. */
+.title-group {
+/* I am using flexbox. */
+    display: flex;
+/* I am centering vertically. */
+    align-items: center;
+/* I am adding a gap. */
+    gap: 12px;
+/* I am closing the title-group style. */
+}
+/* I am styling the header icon. */
+.header-icon {
+/* I am coloring it with the primary color. */
+    color: var(--primary);
+/* I am making it larger. */
+    font-size: 1.5rem;
+/* I am closing the header-icon style. */
+}
+/* I am styling the project title text. */
+#active-project-title {
+/* I am setting font weight. */
+    font-weight: 500;
+/* I am closing the title style. */
+}
+
+/* --- I am styling the Kanban Columns --- */
+/* I am styling the main board container. */
+.kanban-board {
+/* I am using flexbox row layout for columns. */
+    display: flex;
+/* I am adding a gap between columns. */
+    gap: 20px;
+/* I am allowing it to take remaining height. */
+    flex-grow: 1;
+/* I am enabling horizontal scroll if columns overflow. */
+    overflow-x: auto;
+/* I am adding padding bottom for the scrollbar. */
+    padding-bottom: 10px;
+/* I am closing the kanban-board style. */
+}
+/* I am styling the wrapper around each column. */
+.column-wrapper {
+/* I am using flexbox column for header + dropzone. */
+    display: flex;
+/* I am setting direction to column. */
+    flex-direction: column;
+/* I am setting a minimum width for columns. */
+    min-width: 300px;
+/* I am making columns flexible but bound to the min-width. */
+    flex: 1;
+/* I am closing the column-wrapper style. */
+}
+/* I am styling the column header. */
+.column-header {
+/* I am using flexbox. */
+    display: flex;
+/* I am centering vertically. */
+    align-items: center;
+/* I am adding a gap. */
+    gap: 10px;
+/* I am adding bottom margin. */
+    margin-bottom: 15px;
+/* I am closing the column-header style. */
+}
+/* I am styling the generic status indicator dot. */
+.status-dot {
+/* I am setting width. */
+    width: 10px;
+/* I am setting height. */
+    height: 10px;
+/* I am making it circular. */
+    border-radius: 50%;
+/* I am closing the status-dot style. */
+}
+/* I am coloring the To-Do dot. */
+.dot-todo { background: #94a1b2; }
+/* I am coloring the In Progress dot. */
+.dot-progress { background: #ffd166; }
+/* I am coloring the Done dot. */
+.dot-done { background: #06d6a0; }
+
+/* I am styling the h3 in the column header. */
+.column-header h3 {
+/* I am setting font size. */
+    font-size: 1rem;
+/* I am setting font weight. */
+    font-weight: 500;
+/* I am closing the h3 style. */
+}
+
+/* I am styling the actual drop zone column. */
+.column {
+/* I am setting flex-grow so it expands. */
+    flex-grow: 1;
+/* I am adding padding. */
+    padding: 15px;
+/* I am allowing vertical scrolling for tasks inside the column. */
+    overflow-y: auto;
+/* I am adding a transition for drag-over effects. */
+    transition: background 0.3s ease;
+/* I am closing the column style. */
+}
+/* I am styling the column when a card is dragged over it. */
+.column.drag-over {
+/* I am changing the background to indicate it is an active drop zone. */
+    background: var(--surface-hover);
+/* I am changing the border to the primary color. */
+    border-color: var(--primary);
+/* I am closing the drag-over style. */
+}
+
+/* --- I am styling the Task Cards --- */
+/* I am styling the task container. */
+.task-list {
+/* I am using flexbox column layout for cards. */
+    display: flex;
+/* I am setting direction. */
+    flex-direction: column;
+/* I am adding a gap between cards. */
+    gap: 12px;
+/* I am setting a minimum height so empty lists still have drop space. */
+    min-height: 50px;
+/* I am closing the task-list style. */
+}
+/* I am styling the individual task card. */
+.task {
+/* I am setting the background darker than the column. */
+    background: rgba(15, 17, 26, 0.9);
+/* I am adding a subtle border. */
+    border: 1px solid var(--border);
+/* I am adding padding. */
+    padding: 15px;
+/* I am rounding corners. */
+    border-radius: 10px;
+/* I am changing cursor to grab to indicate draggability. */
+    cursor: grab;
+/* I am adding transitions for hover and transform. */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+/* I am styling the font size. */
+    font-size: 0.95rem;
+/* I am letting words break to prevent overflow. */
+    word-break: break-word;
+/* I am using flexbox to align content and delete button. */
+    display: flex;
+/* I am spacing content apart. */
+    justify-content: space-between;
+/* I am aligning items to the start (top). */
+    align-items: flex-start;
+/* I am adding a gap. */
+    gap: 10px;
+/* I am closing the task style. */
+}
+/* I am styling the active grab state. */
+.task:active {
+/* I am changing cursor to grabbing. */
+    cursor: grabbing;
+/* I am closing the active style. */
+}
+/* I am styling the hover state of the task card. */
+.task:hover {
+/* I am moving the card slightly up on hover. */
+    transform: translateY(-2px);
+/* I am adding a shadow. */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+/* I am highlighting the border with the primary color. */
+    border-color: rgba(157, 78, 221, 0.5);
+/* I am closing the hover style. */
+}
+/* I am styling the task content wrapper. */
+.task-content-wrapper {
+/* I am using flexbox. */
+    display: flex;
+/* I am setting column layout. */
+    flex-direction: column;
+/* I am allowing it to flex. */
+    flex: 1;
+/* I am closing the task-content-wrapper style. */
+}
+/* I am styling the content span inside the task. */
+.task-content {
+/* I am setting line height for readability. */
+    line-height: 1.4;
+/* I am adding bottom margin for badge. */
+    margin-bottom: 8px;
+/* I am closing the task-content style. */
+}
+
+/* --- I am defining Priority Badge Styles --- */
+/* I am styling the priority badge base. */
+.priority-badge {
+/* I am setting font size. */
+    font-size: 0.7rem;
+/* I am transforming text. */
+    text-transform: uppercase;
+/* I am setting font weight. */
+    font-weight: 600;
+/* I am adding padding. */
+    padding: 3px 8px;
+/* I am rounding corners. */
+    border-radius: 12px;
+/* I am setting display to inline-block. */
+    display: inline-block;
+/* I am adding a fit-content width so it doesn't stretch. */
+    width: fit-content;
+/* I am closing the priority-badge style. */
+}
+/* I am styling the High priority badge. */
+.priority-high {
+/* I am setting red background. */
+    background: rgba(239, 71, 111, 0.2);
+/* I am setting red text. */
+    color: #ef476f;
+/* I am adding a red border. */
+    border: 1px solid rgba(239, 71, 111, 0.5);
+/* I am closing priority-high style. */
+}
+/* I am styling the Medium priority badge. */
+.priority-medium {
+/* I am setting yellow background. */
+    background: rgba(255, 209, 102, 0.2);
+/* I am setting yellow text. */
+    color: #ffd166;
+/* I am adding a yellow border. */
+    border: 1px solid rgba(255, 209, 102, 0.5);
+/* I am closing priority-medium style. */
+}
+/* I am styling the Low priority badge. */
+.priority-low {
+/* I am setting blue background. */
+    background: rgba(17, 138, 178, 0.2);
+/* I am setting blue text. */
+    color: #118ab2;
+/* I am adding a blue border. */
+    border: 1px solid rgba(17, 138, 178, 0.5);
+/* I am closing priority-low style. */
+}
+
+/* --- I am defining Delete Button Styles --- */
+/* I am styling the delete project button. */
+.delete-project-btn {
+/* I am hiding it by default. */
+    display: none;
+/* I am setting background transparent. */
+    background: none;
+/* I am removing borders. */
+    border: none;
+/* I am setting text color to red. */
+    color: #ef476f;
+/* I am setting cursor pointer. */
+    cursor: pointer;
+/* I am adding some padding so it's easier to click. */
+    padding: 5px;
+/* I am closing the delete-project-btn style. */
+}
+/* I am showing the delete project button on hover. */
+.project-item:hover .delete-project-btn {
+/* I am showing it block. */
+    display: block;
+/* I am closing hover style. */
+}
+
+/* I am styling the delete task button (hidden by default). */
+.delete-task-btn {
+/* I am setting background to transparent. */
+    background: none;
+/* I am removing border. */
+    border: none;
+/* I am setting color to gray. */
+    color: var(--text-secondary);
+/* I am setting cursor pointer. */
+    cursor: pointer;
+/* I am hiding it completely initially. */
+    opacity: 0;
+/* I am adding a transition. */
+    transition: all 0.2s ease;
+/* I am setting font size. */
+    font-size: 0.9rem;
+/* I am setting padding. */
+    padding: 2px;
+/* I am closing the delete-task-btn style. */
+}
+/* I am making the delete button visible when hovering over the task. */
+.task:hover .delete-task-btn {
+/* I am restoring opacity. */
+    opacity: 1;
+/* I am closing the hover delete button style. */
+}
+/* I am styling the hover state of the delete button itself. */
+.delete-task-btn:hover {
+/* I am changing color to red on hover. */
+    color: #ef476f;
+/* I am closing the button hover style. */
+}

@@ -1,0 +1,134 @@
+<!-- I am declaring the document type as HTML5 for modern browser compatibility. -->
+<!DOCTYPE html>
+<!-- I am opening the HTML tag and setting the language to English. -->
+<html lang="en">
+<!-- I am opening the head section to include meta tags and stylesheets. -->
+<head>
+    <!-- I am setting the character encoding to UTF-8. -->
+    <meta charset="UTF-8">
+    <!-- I am configuring the viewport for responsive mobile design. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- I am setting the page title for the browser tab. -->
+    <title>Nexus | Project Management</title>
+    <!-- I am importing the Google Font 'Outfit' for a modern typography feel. -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- I am importing FontAwesome for high-quality scalable icons. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- I am linking the global CSS file for styling the application. -->
+    <link rel="stylesheet" href="public/css/style.css">
+<!-- I am closing the head section. -->
+</head>
+<!-- I am opening the body element to contain the visible UI. -->
+<body>
+    <!-- I am creating a container for the animated background blobs. -->
+    <div class="bg-blobs">
+        <!-- I am adding a purple blob element for background styling. -->
+        <div class="blob blob-1"></div>
+        <!-- I am adding a blue blob element for background styling. -->
+        <div class="blob blob-2"></div>
+    <!-- I am closing the background blobs container. -->
+    </div>
+
+    <!-- I am creating the main authentication wrapper. -->
+    <div class="auth-wrapper">
+        <!-- I am creating the glassmorphic container for the forms. -->
+        <div class="auth-container glass-panel">
+            
+            <!-- I am adding a header section with a logo and title. -->
+            <div class="auth-header">
+                <!-- I am adding a futuristic icon for the logo. -->
+                <i class="fa-solid fa-layer-group logo-icon"></i>
+                <!-- I am adding the brand name with a gradient text effect. -->
+                <h1 class="gradient-text">Nexus</h1>
+                <!-- I am adding a sleek tagline. -->
+                <p>Elevate your team's workflow.</p>
+            <!-- I am closing the auth header section. -->
+            </div>
+            
+            <!-- I am creating a section for the login form. -->
+            <div id="login-section">
+                <!-- I am adding a heading to indicate this is the login screen. -->
+                <h2>Welcome Back</h2>
+                <!-- Banner for general alerts/notifications like DB connection status -->
+                <div id="login-banner" class="form-banner" style="display: none;"></div>
+                <!-- I am creating the login form element. -->
+                <form id="login-form" class="modern-form" novalidate>
+                    <!-- Field wrapper for email -->
+                    <div class="field-wrapper">
+                        <div class="input-group" id="login-email-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="login-email" placeholder="Email Address" required autocomplete="email">
+                        </div>
+                        <div class="field-feedback" id="login-email-msg"></div>
+                    </div>
+                    <!-- Field wrapper for password -->
+                    <div class="field-wrapper">
+                        <div class="input-group" id="login-password-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
+                        </div>
+                        <div class="field-feedback" id="login-password-msg"></div>
+                    </div>
+                    <!-- I am creating the glowing submit button for login. -->
+                    <button type="submit" id="login-btn" class="btn-glow">Sign In <i class="fa-solid fa-arrow-right"></i></button>
+                <!-- I am closing the login form. -->
+                </form>
+                <!-- I am adding a toggle link to switch to the signup view. -->
+                <p class="auth-toggle">New to Nexus? <a href="#" id="show-signup">Create an account</a></p>
+            <!-- I am closing the login section. -->
+            </div>
+
+            <!-- I am creating a section for the signup form (hidden by default). -->
+            <div id="signup-section" style="display: none;">
+                <!-- I am adding a heading to indicate this is the registration screen. -->
+                <h2>Join Nexus</h2>
+                <!-- Banner for general alerts/notifications -->
+                <div id="signup-banner" class="form-banner" style="display: none;"></div>
+                <!-- I am creating the signup form element. -->
+                <form id="signup-form" class="modern-form" novalidate>
+                    <!-- Field wrapper for username -->
+                    <div class="field-wrapper">
+                        <div class="input-group" id="signup-username-group">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="signup-username" placeholder="Username" required autocomplete="username">
+                        </div>
+                        <div class="field-feedback" id="signup-username-msg"></div>
+                    </div>
+                    <!-- Field wrapper for email -->
+                    <div class="field-wrapper">
+                        <div class="input-group" id="signup-email-group">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="signup-email" placeholder="Email Address" required autocomplete="email">
+                        </div>
+                        <div class="field-feedback" id="signup-email-msg"></div>
+                    </div>
+                    <!-- Field wrapper for password -->
+                    <div class="field-wrapper">
+                        <div class="input-group" id="signup-password-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="signup-password" placeholder="Password" required autocomplete="new-password">
+                        </div>
+                        <div class="field-feedback" id="signup-password-msg"></div>
+                    </div>
+                    <!-- I am creating the glowing submit button for signup. -->
+                    <button type="submit" id="signup-btn" class="btn-glow">Create Account <i class="fa-solid fa-user-plus"></i></button>
+                <!-- I am closing the signup form. -->
+                </form>
+                <!-- I am adding a toggle link to switch back to the login view. -->
+                <p class="auth-toggle">Already have an account? <a href="#" id="show-login">Sign in</a></p>
+            <!-- I am closing the signup section. -->
+            </div>
+
+        <!-- I am closing the glass-panel auth-container. -->
+        </div>
+    <!-- I am closing the auth-wrapper division. -->
+    </div>
+
+    <!-- I am including the app.js script for global frontend state. -->
+    <script src="public/js/app.js"></script>
+    <!-- I am including the auth.js script to handle fetch API login/register logic. -->
+    <script src="public/js/auth.js"></script>
+<!-- I am closing the body element. -->
+</body>
+<!-- I am closing the HTML tag. -->
+</html>

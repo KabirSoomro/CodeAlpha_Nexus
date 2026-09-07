@@ -1,0 +1,715 @@
+/* I am importing the global variables and resets for the premium dark theme. */
+:root {
+/* I am setting the primary brand color to a vibrant neon purple. */
+    --primary: #9d4edd;
+/* I am setting the secondary accent color to a glowing pink. */
+    --secondary: #ff70a6;
+/* I am setting the dark background color. */
+    --bg-dark: #0f111a;
+/* I am setting the surface color for cards and panels. */
+    --surface: rgba(25, 28, 41, 0.6);
+/* I am setting the surface color for hover states. */
+    --surface-hover: rgba(35, 40, 58, 0.8);
+/* I am setting the border color for glassmorphic elements. */
+    --border: rgba(255, 255, 255, 0.08);
+/* I am setting the primary text color to pure white. */
+    --text-primary: #ffffff;
+/* I am setting the secondary text color to a muted gray. */
+    --text-secondary: #94a1b2;
+/* I am defining a sleek gradient for buttons and text. */
+    --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+/* I am defining a subtle shadow for elevation. */
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* I am closing the root variables declaration. */
+}
+
+/* I am applying a global reset to all elements. */
+* {
+/* I am setting the box-sizing to border-box. */
+    box-sizing: border-box;
+/* I am removing default margin. */
+    margin: 0;
+/* I am removing default padding. */
+    padding: 0;
+/* I am closing the global reset. */
+}
+
+/* I am styling the body element for the dark theme. */
+body {
+/* I am applying the Outfit font globally. */
+    font-family: 'Outfit', sans-serif;
+/* I am setting the background color to the dark variable. */
+    background-color: var(--bg-dark);
+/* I am setting the text color. */
+    color: var(--text-primary);
+/* I am ensuring the body takes at least the full height of the viewport. */
+    min-height: 100vh;
+/* I am hiding overflow-x to prevent horizontal scrolling from animated blobs. */
+    overflow-x: hidden;
+/* I am closing the body styles. */
+}
+
+/* --- I am defining Custom Scrollbar Styles --- */
+/* I am targeting the webkit scrollbar for custom elements. */
+.custom-scrollbar::-webkit-scrollbar {
+/* I am setting the scrollbar width. */
+    width: 6px;
+/* I am closing the scrollbar width style. */
+}
+/* I am targeting the webkit scrollbar track. */
+.custom-scrollbar::-webkit-scrollbar-track {
+/* I am making the track transparent. */
+    background: transparent;
+/* I am closing the scrollbar track style. */
+}
+/* I am targeting the webkit scrollbar thumb. */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+/* I am giving the thumb a dark semi-transparent color. */
+    background: rgba(255, 255, 255, 0.1);
+/* I am rounding the corners of the scrollbar thumb. */
+    border-radius: 10px;
+/* I am closing the scrollbar thumb style. */
+}
+/* I am targeting the webkit scrollbar thumb on hover. */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+/* I am making the thumb slightly brighter on hover. */
+    background: rgba(255, 255, 255, 0.2);
+/* I am closing the scrollbar thumb hover style. */
+}
+
+/* --- I am defining Animated Background Blobs --- */
+/* I am styling the container for the background blobs. */
+.bg-blobs {
+/* I am setting position to fixed to stay behind everything. */
+    position: fixed;
+/* I am aligning it to the top. */
+    top: 0;
+/* I am aligning it to the left. */
+    left: 0;
+/* I am making it cover the full width. */
+    width: 100vw;
+/* I am making it cover the full height. */
+    height: 100vh;
+/* I am setting the z-index below all content. */
+    z-index: -1;
+/* I am hiding any overflow from the blur effect. */
+    overflow: hidden;
+/* I am closing the bg-blobs container style. */
+}
+/* I am styling the base blob element. */
+.blob {
+/* I am setting position to absolute to place them freely. */
+    position: absolute;
+/* I am making them circular. */
+    border-radius: 50%;
+/* I am applying a huge blur filter for the glowing aura effect. */
+    filter: blur(80px);
+/* I am reducing opacity so they are subtle. */
+    opacity: 0.4;
+/* I am adding an animation property for floating. */
+    animation: float 20s infinite ease-in-out alternate;
+/* I am closing the base blob style. */
+}
+/* I am styling the first blob (purple). */
+.blob-1 {
+/* I am setting its width. */
+    width: 500px;
+/* I am setting its height. */
+    height: 500px;
+/* I am setting its background color to the primary purple. */
+    background-color: var(--primary);
+/* I am positioning it at the top. */
+    top: -100px;
+/* I am positioning it at the left. */
+    left: -100px;
+/* I am setting a specific animation delay. */
+    animation-delay: 0s;
+/* I am closing the first blob style. */
+}
+/* I am styling the second blob (blue/pink). */
+.blob-2 {
+/* I am setting its width. */
+    width: 400px;
+/* I am setting its height. */
+    height: 400px;
+/* I am setting its background color to the secondary pink. */
+    background-color: var(--secondary);
+/* I am positioning it at the bottom. */
+    bottom: -100px;
+/* I am positioning it at the right. */
+    right: -100px;
+/* I am setting a specific animation delay to desync it. */
+    animation-delay: -5s;
+/* I am closing the second blob style. */
+}
+
+/* I am defining the keyframes for the blob floating animation. */
+@keyframes float {
+/* I am defining the start state of the animation. */
+    0% {
+/* I am applying a baseline transform. */
+        transform: translate(0, 0) scale(1);
+/* I am closing the 0% state. */
+    }
+/* I am defining the end state of the animation. */
+    100% {
+/* I am applying a translation and scale transform. */
+        transform: translate(50px, 50px) scale(1.1);
+/* I am closing the 100% state. */
+    }
+/* I am closing the keyframes. */
+}
+
+/* --- I am defining Glassmorphism Utility Classes --- */
+/* I am creating a class for glass panels. */
+.glass-panel {
+/* I am applying a translucent dark background. */
+    background: var(--surface);
+/* I am applying a backdrop blur for the frosted glass effect. */
+    backdrop-filter: blur(12px);
+/* I am applying the webkit prefix for backdrop blur. */
+    -webkit-backdrop-filter: blur(12px);
+/* I am adding a subtle white border to simulate glass edges. */
+    border: 1px solid var(--border);
+/* I am rounding the corners. */
+    border-radius: 16px;
+/* I am adding a soft shadow. */
+    box-shadow: var(--shadow);
+/* I am closing the glass-panel style. */
+}
+/* I am creating a darker variant of the glass panel. */
+.glass-panel-dark {
+/* I am applying a darker translucent background. */
+    background: rgba(15, 17, 26, 0.8);
+/* I am applying a backdrop blur. */
+    backdrop-filter: blur(16px);
+/* I am applying the webkit prefix. */
+    -webkit-backdrop-filter: blur(16px);
+/* I am adding the border. */
+    border-bottom: 1px solid var(--border);
+/* I am closing the glass-panel-dark style. */
+}
+
+/* --- I am defining Typography Styles --- */
+/* I am creating a class for gradient text. */
+.gradient-text {
+/* I am setting the background to the gradient variable. */
+    background: var(--gradient);
+/* I am clipping the background to the text shape. */
+    -webkit-background-clip: text;
+/* I am making the actual text color transparent so the background shows through. */
+    -webkit-text-fill-color: transparent;
+/* I am closing the gradient-text style. */
+}
+
+/* --- I am defining Auth Page Styles --- */
+/* I am styling the wrapper that centers the auth container. */
+.auth-wrapper {
+/* I am using flexbox for centering. */
+    display: flex;
+/* I am centering items vertically. */
+    align-items: center;
+/* I am centering items horizontally. */
+    justify-content: center;
+/* I am making it take the full viewport height. */
+    min-height: 100vh;
+/* I am adding padding for mobile screens. */
+    padding: 20px;
+/* I am closing the auth-wrapper style. */
+}
+/* I am styling the auth container glass panel. */
+.auth-container {
+/* I am setting a maximum width. */
+    width: 100%;
+/* I am setting a specific width. */
+    max-width: 420px;
+/* I am adding internal padding. */
+    padding: 40px;
+/* I am centering text globally within the container. */
+    text-align: center;
+/* I am closing the auth-container style. */
+}
+/* I am styling the auth header area. */
+.auth-header {
+/* I am adding margin at the bottom. */
+    margin-bottom: 30px;
+/* I am closing the auth-header style. */
+}
+/* I am styling the logo icon in the auth header. */
+.auth-header .logo-icon {
+/* I am setting a large font size. */
+    font-size: 3rem;
+/* I am setting the color to the primary brand color. */
+    color: var(--primary);
+/* I am adding bottom margin. */
+    margin-bottom: 10px;
+/* I am closing the auth-header logo-icon style. */
+}
+/* I am styling the tagline paragraph. */
+.auth-header p {
+/* I am setting the text color to the secondary gray. */
+    color: var(--text-secondary);
+/* I am setting the font size. */
+    font-size: 0.9rem;
+/* I am closing the tagline style. */
+}
+/* I am styling the section headings. */
+.auth-container h2 {
+/* I am adding bottom margin. */
+    margin-bottom: 20px;
+/* I am setting the font weight. */
+    font-weight: 500;
+/* I am closing the section heading style. */
+}
+
+/* --- I am defining Form & Input Styles --- */
+/* I am styling the modern form wrapper. */
+.modern-form {
+/* I am using flexbox with a column direction. */
+    display: flex;
+/* I am setting the flex direction. */
+    flex-direction: column;
+/* I am adding a gap between form elements. */
+    gap: 15px;
+/* I am closing the modern-form style. */
+}
+/* I am styling the input group wrapper. */
+.input-group {
+/* I am setting position to relative to absolutely position the icon inside. */
+    position: relative;
+/* I am closing the input-group style. */
+}
+/* I am styling the icon inside the input group. */
+.input-group i {
+/* I am setting position absolute. */
+    position: absolute;
+/* I am positioning it from the left. */
+    left: 15px;
+/* I am centering it vertically. */
+    top: 50%;
+/* I am applying the transform to center perfectly. */
+    transform: translateY(-50%);
+/* I am setting the icon color. */
+    color: var(--text-secondary);
+/* I am closing the input-group icon style. */
+}
+/* I am styling the actual input fields. */
+.input-group input, .modern-input {
+/* I am making the input take full width. */
+    width: 100%;
+/* I am adding padding, with extra padding on the left to avoid the icon. */
+    padding: 12px 15px 12px 40px;
+/* I am applying a very transparent background. */
+    background: rgba(255, 255, 255, 0.03);
+/* I am adding a subtle border. */
+    border: 1px solid var(--border);
+/* I am rounding the corners. */
+    border-radius: 8px;
+/* I am setting the text color. */
+    color: var(--text-primary);
+/* I am inheriting the font family. */
+    font-family: inherit;
+/* I am setting the font size. */
+    font-size: 0.95rem;
+/* I am adding a smooth transition for focus effects. */
+    transition: all 0.3s ease;
+/* I am closing the input style. */
+}
+/* I am adjusting padding for modern-inputs that don't have icons. */
+.modern-input {
+/* I am setting standard padding. */
+    padding: 12px 15px;
+/* I am closing the modern-input specific style. */
+}
+/* I am styling select elements with the modern-input class. */
+select.modern-input {
+/* I am removing the default browser appearance. */
+    appearance: none;
+    -webkit-appearance: none;
+/* I am adding a custom dropdown arrow icon. */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: 50%;
+}
+/* I am styling the options in the select to match the dark theme. */
+select.modern-input option {
+/* I am setting a dark background. */
+    background-color: var(--bg-dark);
+/* I am setting text to white. */
+    color: var(--text-primary);
+}
+/* I am styling the specific priority options to match the theme colors. */
+select.modern-input option[value="High"] {
+    color: #ef476f;
+    font-weight: 600;
+}
+select.modern-input option[value="Medium"] {
+    color: #ffd166;
+    font-weight: 600;
+}
+select.modern-input option[value="Low"] {
+    color: #118ab2;
+    font-weight: 600;
+}
+/* I am styling the focus state of the inputs. */
+.input-group input:focus, .modern-input:focus {
+/* I am removing the default outline. */
+    outline: none;
+/* I am changing the border color to the primary brand color. */
+    border-color: var(--primary);
+/* I am changing the background slightly. */
+    background: rgba(255, 255, 255, 0.05);
+/* I am adding a subtle glow shadow around the input. */
+    box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.2);
+/* I am closing the input focus style. */
+}
+
+/* --- I am defining Field Feedback and Validation Styles --- */
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+    width: 100%;
+}
+
+.field-feedback {
+    display: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.field-feedback.active {
+    display: flex;
+    animation: fieldFeedbackIn 0.25s ease forwards;
+}
+
+.field-feedback.error {
+    color: #ff6b8b;
+    background: rgba(255, 107, 139, 0.12);
+    border-left: 3px solid #ff6b8b;
+}
+
+.field-feedback.success {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    border-left: 3px solid #10b981;
+}
+
+.field-feedback.info {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border-left: 3px solid #38bdf8;
+}
+
+.input-group.has-error input {
+    border-color: #ff6b8b !important;
+    box-shadow: 0 0 0 3px rgba(255, 107, 139, 0.25) !important;
+}
+
+.input-group.has-error i {
+    color: #ff6b8b !important;
+}
+
+.input-group.has-success input {
+    border-color: #10b981 !important;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25) !important;
+}
+
+.input-group.has-success i {
+    color: #10b981 !important;
+}
+
+/* Form alert banner */
+.form-banner {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    text-align: left;
+    line-height: 1.45;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    animation: fieldFeedbackIn 0.3s ease forwards;
+}
+
+.form-banner.warning {
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    color: #fbbf24;
+}
+
+.form-banner.error {
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #fca5a5;
+}
+
+.form-banner.success {
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    color: #6ee7b7;
+}
+
+@keyframes fieldFeedbackIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- I am defining Button Styles --- */
+/* I am styling the glowing button class. */
+.btn-glow {
+/* I am applying the gradient background. */
+    background: var(--gradient);
+/* I am removing the border. */
+    border: none;
+/* I am adding padding. */
+    padding: 12px 20px;
+/* I am rounding the corners. */
+    border-radius: 8px;
+/* I am setting the text color to white. */
+    color: white;
+/* I am setting the font weight. */
+    font-weight: 600;
+/* I am setting the font size. */
+    font-size: 1rem;
+/* I am changing the cursor to pointer. */
+    cursor: pointer;
+/* I am adding a smooth transition for hover effects. */
+    transition: all 0.3s ease;
+/* I am using flexbox to center the text and icon. */
+    display: flex;
+/* I am centering vertically. */
+    align-items: center;
+/* I am centering horizontally. */
+    justify-content: center;
+/* I am adding a gap between text and icon. */
+    gap: 8px;
+/* I am closing the btn-glow style. */
+}
+/* I am styling the hover state for the glowing button. */
+.btn-glow:hover {
+/* I am moving the button up slightly. */
+    transform: translateY(-2px);
+/* I am adding a strong glowing shadow on hover. */
+    box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4);
+/* I am closing the hover style. */
+}
+/* I am styling a smaller variant of the glowing button. */
+.btn-glow-small {
+/* I am inheriting properties from btn-glow but making it smaller. */
+    background: var(--gradient);
+/* I am removing the border. */
+    border: none;
+/* I am setting a fixed width. */
+    width: 38px;
+/* I am setting a fixed height. */
+    height: 38px;
+/* I am making it circular. */
+    border-radius: 8px;
+/* I am setting the color. */
+    color: white;
+/* I am setting the cursor. */
+    cursor: pointer;
+/* I am adding the transition. */
+    transition: all 0.3s ease;
+/* I am centering the icon. */
+    display: flex;
+/* I am aligning center. */
+    align-items: center;
+/* I am justifying center. */
+    justify-content: center;
+/* I am closing the btn-glow-small style. */
+}
+/* I am styling the hover state for the small button. */
+.btn-glow-small:hover {
+/* I am moving it up. */
+    transform: translateY(-2px);
+/* I am adding the glow shadow. */
+    box-shadow: 0 4px 15px rgba(157, 78, 221, 0.4);
+/* I am closing the hover style. */
+}
+/* I am styling an outlined button. */
+.btn-outline {
+/* I am setting the background to transparent. */
+    background: transparent;
+/* I am adding a border with the secondary text color. */
+    border: 1px solid var(--border);
+/* I am setting the text color. */
+    color: var(--text-secondary);
+/* I am adding padding. */
+    padding: 8px 16px;
+/* I am rounding the corners. */
+    border-radius: 6px;
+/* I am changing cursor to pointer. */
+    cursor: pointer;
+/* I am adding a transition. */
+    transition: all 0.3s ease;
+/* I am setting the font size. */
+    font-size: 0.85rem;
+/* I am setting the font family. */
+    font-family: inherit;
+/* I am closing the btn-outline style. */
+}
+/* I am styling the hover state for the outline button. */
+.btn-outline:hover {
+/* I am changing the text color to white. */
+    color: white;
+/* I am changing the border color. */
+    border-color: rgba(255, 255, 255, 0.3);
+/* I am applying a slightly lighter background. */
+    background: rgba(255, 255, 255, 0.05);
+/* I am closing the hover style. */
+}
+
+/* --- I am defining Toggle Links for Auth --- */
+/* I am styling the text paragraph containing the toggle link. */
+.auth-toggle {
+/* I am adding top margin. */
+    margin-top: 20px;
+/* I am setting the font size. */
+    font-size: 0.9rem;
+/* I am setting the text color. */
+    color: var(--text-secondary);
+/* I am closing the auth-toggle text style. */
+}
+/* I am styling the anchor link inside the toggle paragraph. */
+.auth-toggle a {
+/* I am setting the link color to the primary brand color. */
+    color: var(--primary);
+/* I am removing the underline. */
+    text-decoration: none;
+/* I am making it slightly bold. */
+    font-weight: 500;
+/* I am adding a transition. */
+    transition: color 0.3s ease;
+/* I am closing the anchor style. */
+}
+/* I am styling the hover state for the anchor link. */
+.auth-toggle a:hover {
+/* I am changing the color to the secondary pink on hover. */
+    color: var(--secondary);
+/* I am closing the anchor hover style. */
+}
+
+/* --- I am defining Modal Styles --- */
+/* I am styling the full-screen modal overlay. */
+.modal-overlay {
+/* I am fixing the position to cover the whole screen. */
+    position: fixed;
+/* I am setting top to 0. */
+    top: 0;
+/* I am setting left to 0. */
+    left: 0;
+/* I am making it full width. */
+    width: 100vw;
+/* I am making it full height. */
+    height: 100vh;
+/* I am setting a semi-transparent dark background. */
+    background: rgba(0, 0, 0, 0.6);
+/* I am applying a blur to the background content. */
+    backdrop-filter: blur(5px);
+/* I am centering the modal content using flexbox. */
+    display: flex;
+/* I am aligning items in the center. */
+    align-items: center;
+/* I am justifying content in the center. */
+    justify-content: center;
+/* I am ensuring it sits on top of everything. */
+    z-index: 1000;
+/* I am closing the modal-overlay style. */
+}
+
+/* I am styling the modal content box. */
+.modal-content {
+/* I am setting the width. */
+    width: 100%;
+/* I am setting a max-width so it's not too wide. */
+    max-width: 500px;
+/* I am adding padding inside. */
+    padding: 30px;
+/* I am positioning relative so the close button can be absolute. */
+    position: relative;
+/* I am adding an entry animation. */
+    animation: modalSlideIn 0.3s ease-out;
+/* I am closing the modal-content style. */
+}
+
+/* I am styling the close buttons for modals. */
+.close-modal-btn, .close-details-btn {
+/* I am positioning absolutely to the top right. */
+    position: absolute;
+/* I am setting top. */
+    top: 15px;
+/* I am setting right. */
+    right: 15px;
+/* I am setting transparent background. */
+    background: none;
+/* I am removing borders. */
+    border: none;
+/* I am setting color to gray. */
+    color: var(--text-secondary);
+/* I am setting a larger font size. */
+    font-size: 1.2rem;
+/* I am showing a pointer on hover. */
+    cursor: pointer;
+/* I am adding transition. */
+    transition: color 0.2s;
+/* I am closing the close button style. */
+}
+/* I am styling hover on close button. */
+.close-modal-btn:hover, .close-details-btn:hover {
+/* I am making it red on hover. */
+    color: #ef476f;
+/* I am closing the close button hover style. */
+}
+
+/* I am defining keyframes for modal animation. */
+@keyframes modalSlideIn {
+/* I am defining start state. */
+    from { transform: translateY(-50px); opacity: 0; }
+/* I am defining end state. */
+    to { transform: translateY(0); opacity: 1; }
+/* I am closing keyframes. */
+}
+
+/* --- I am defining Search Bar Styles --- */
+/* I am styling the search container in navbar. */
+.search-container {
+/* I am positioning relatively. */
+    position: relative;
+/* I am setting a fixed width. */
+    width: 300px;
+/* I am closing the search-container style. */
+}
+/* I am styling the search icon inside. */
+.search-container i {
+/* I am positioning absolute left. */
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+/* I am closing the search icon style. */
+}
+/* I am styling the actual search input. */
+.search-input {
+/* I am adding left padding to clear the icon. */
+    padding-left: 40px !important;
+/* I am making it more rounded. */
+    border-radius: 20px !important;
+/* I am closing the search input style. */
+}

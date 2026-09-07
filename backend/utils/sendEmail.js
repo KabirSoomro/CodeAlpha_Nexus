@@ -7,22 +7,25 @@ const sendEmail = async (options) => {
     const hasSmtpConfig = process.env.EMAIL_USER && process.env.EMAIL_PASS;
 
     if (hasSmtpConfig) {
-        // I am creating a transporter configured with the provided SMTP credentials.
+        // I am sanitizing email and removing spaces from app passwords.
+        const cleanUser = process.env.EMAIL_USER.trim();
+        const cleanPass = process.env.EMAIL_PASS.replace(/\s+/g, '');
+
+        // I am creating a transporter configured with Gmail SMTP.
         const transporter = nodemailer.createTransport({
-            // I am using the configured service or defaulting to gmail.
             service: process.env.EMAIL_SERVICE || 'gmail',
             auth: {
-                // I am using the email address from environment variables.
-                user: process.env.EMAIL_USER,
-                // I am using the email app password from environment variables.
-                pass: process.env.EMAIL_PASS
+                // I am using the sanitized email address.
+                user: cleanUser,
+                // I am using the sanitized app password.
+                pass: cleanPass
             }
         });
 
         // I am defining the email dispatch payload.
         const mailOptions = {
             // I am setting the sender name and email address.
-            from: `"Nexus Project Management" <${process.env.EMAIL_USER}>`,
+            from: `"Nexus Project Management" <${cleanUser}>`,
             // I am setting the recipient email address.
             to: options.email,
             // I am setting the email subject line.
@@ -33,10 +36,15 @@ const sendEmail = async (options) => {
             html: options.html
         };
 
-        // I am sending the email via the configured transporter.
-        const info = await transporter.sendMail(mailOptions);
-        console.log(`Password reset email sent to ${options.email}: ${info.messageId}`);
-        return { success: true, messageId: info.messageId };
+        try {
+            // I am sending the email via the configured transporter.
+            const info = await transporter.sendMail(mailOptions);
+            console.log(`Password reset email successfully delivered to ${options.email}: ${info.messageId}`);
+            return { success: true, messageId: info.messageId };
+        } catch (emailError) {
+            console.error(`Failed to send email via SMTP to ${options.email}:`, emailError.message);
+            throw emailError;
+        }
     } else {
         // I am logging a simulated email dispatch when SMTP credentials are not yet configured in production.
         console.log('----------------------------------------------------');

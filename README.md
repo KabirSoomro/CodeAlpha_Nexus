@@ -11,13 +11,13 @@
   <!-- Primary Action Badges -->
   <p align="center">
     <a href="https://code-alpha-nexus-laqo.vercel.app" target="_blank">
-      <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Web_App-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
+      <img src="https://img.shields.io/badge/Live_Demo-Visit_App-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
     </a>
-    <a href="https://www.linkedin.com/posts/your-linkedin-video-link" target="_blank">
-      <img src="https://img.shields.io/badge/🎥_Demo_Video-Watch_on_LinkedIn-E11D48?style=for-the-badge&logo=youtube&logoColor=white" alt="Live Demo Video" />
+    <a href="https://www.youtube.com" target="_blank">
+      <img src="https://img.shields.io/badge/Demo_Video-Watch_on_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch on YouTube" />
     </a>
     <a href="https://www.linkedin.com/in/kabir-soomro" target="_blank">
-      <img src="https://img.shields.io/badge/💼_Developer-Kabir_Soomro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
+      <img src="https://img.shields.io/badge/Developer-Kabir_Soomro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
     </a>
   </p>
 
@@ -52,16 +52,14 @@
 
 ## 🌐 Live Application Access
 
-Click the button or link below to test the full Kanban workspace live in your browser:
+Click below to test the full Kanban workspace live in your browser:
 
-| Resource | Platform | Status | Link |
+| Resource | Platform | Status | Direct Link |
 | :--- | :--- | :--- | :--- |
-| **Live Web Application** | **Vercel** | ![Online](https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square) | [https://code-alpha-nexus-laqo.vercel.app](https://code-alpha-nexus-laqo.vercel.app) |
-| **Source Code Repository** | **GitHub** | ![Public](https://img.shields.io/badge/Repo-Public-blue?style=flat-square) | [KabirSoomro/CodeAlpha_Nexus](https://github.com/KabirSoomro/CodeAlpha_Nexus) |
-| **LinkedIn Demo Video** | **LinkedIn** | ![Video](https://img.shields.io/badge/Walkthrough-Watch_Now-E11D48?style=flat-square) | [Watch Walkthrough](https://www.linkedin.com/posts/your-linkedin-video-link) |
-| **Developer Profile** | **LinkedIn** | ![Profile](https://img.shields.io/badge/Connect-Kabir_Soomro-0A66C2?style=flat-square) | [linkedin.com/in/kabir-soomro](https://www.linkedin.com/in/kabir-soomro) |
+| **Live Web App** | **Vercel** | ![Online](https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square) | [https://code-alpha-nexus-laqo.vercel.app](https://code-alpha-nexus-laqo.vercel.app) |
+| **Source Repository** | **GitHub** | ![Public](https://img.shields.io/badge/Repo-Public-blue?style=flat-square) | [KabirSoomro/CodeAlpha_Nexus](https://github.com/KabirSoomro/CodeAlpha_Nexus) |
 
-> 💡 **Quick Access:** Click on the **[Frontend Application](https://code-alpha-nexus-laqo.vercel.app)** link above to test instant signup, project creation, task management, and drag-and-drop Kanban synchronization in real-time.
+> 💡 **Instant Access:** Click the **[Live Web App](https://code-alpha-nexus-laqo.vercel.app)** link above to test instant signup, project creation, task management, and drag-and-drop Kanban synchronization in real-time.
 
 ---
 

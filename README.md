@@ -16,8 +16,8 @@
     <a href="https://www.linkedin.com/posts/your-linkedin-video-link" target="_blank">
       <img src="https://img.shields.io/badge/🎥_Demo_Video-Watch_on_LinkedIn-E11D48?style=for-the-badge&logo=youtube&logoColor=white" alt="Live Demo Video" />
     </a>
-    <a href="https://www.linkedin.com/in/kabeersoomro" target="_blank">
-      <img src="https://img.shields.io/badge/💼_Developer-Kabeer_Soomro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
+    <a href="https://www.linkedin.com/in/kabir-soomro" target="_blank">
+      <img src="https://img.shields.io/badge/💼_Developer-Kabir_Soomro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
     </a>
   </p>
 
@@ -59,7 +59,7 @@ Click the button or link below to test the full Kanban workspace live in your br
 | **Live Web Application** | **Vercel** | ![Online](https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square) | [https://code-alpha-nexus-laqo.vercel.app](https://code-alpha-nexus-laqo.vercel.app) |
 | **Source Code Repository** | **GitHub** | ![Public](https://img.shields.io/badge/Repo-Public-blue?style=flat-square) | [KabirSoomro/CodeAlpha_Nexus](https://github.com/KabirSoomro/CodeAlpha_Nexus) |
 | **LinkedIn Demo Video** | **LinkedIn** | ![Video](https://img.shields.io/badge/Walkthrough-Watch_Now-E11D48?style=flat-square) | [Watch Walkthrough](https://www.linkedin.com/posts/your-linkedin-video-link) |
-| **Developer Profile** | **LinkedIn** | ![Profile](https://img.shields.io/badge/Connect-Kabeer_Soomro-0A66C2?style=flat-square) | [linkedin.com/in/kabeersoomro](https://www.linkedin.com/in/kabeersoomro) |
+| **Developer Profile** | **LinkedIn** | ![Profile](https://img.shields.io/badge/Connect-Kabir_Soomro-0A66C2?style=flat-square) | [linkedin.com/in/kabir-soomro](https://www.linkedin.com/in/kabir-soomro) |
 
 > 💡 **Quick Access:** Click on the **[Frontend Application](https://code-alpha-nexus-laqo.vercel.app)** link above to test instant signup, project creation, task management, and drag-and-drop Kanban synchronization in real-time.
 
@@ -261,11 +261,11 @@ To allow seamless access across all devices and evaluators:
 
 ## 👨‍💻 Author & Acknowledgments
 
-- **Developer**: Kabeer Soomro
+- **Developer**: Kabir Soomro
 - **Organization**: [CodeAlpha](https://www.codealpha.tech/) (Full Stack Web Development Internship)
-- **LinkedIn**: [Kabeer Soomro](https://www.linkedin.com/in/kabeersoomro)
+- **LinkedIn**: [Kabir Soomro](https://www.linkedin.com/in/kabir-soomro)
 - **License**: This project is licensed under the [ISC License](LICENSE).
 
 <div align="center">
-  <sub>Built with ❤️ by Kabeer Soomro for CodeAlpha. If you find this project helpful, feel free to star ⭐ the repository!</sub>
+  <sub>Built with ❤️ by Kabir Soomro for CodeAlpha. If you find this project helpful, feel free to star ⭐ the repository!</sub>
 </div>

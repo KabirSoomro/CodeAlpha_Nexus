@@ -10,7 +10,7 @@
 
   <!-- Primary Action Badges -->
   <p align="center">
-    <a href="https://your-live-deployment-url.com" target="_blank">
+    <a href="https://code-alpha-nexus-laqo.vercel.app" target="_blank">
       <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Web_App-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
     </a>
     <a href="https://www.linkedin.com/posts/your-linkedin-video-link" target="_blank">

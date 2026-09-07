@@ -16,5 +16,17 @@ router.post('/reset-password/:token', resetPassword);
 // I am defining a POST route for resetting password using token in request body.
 router.post('/reset-password', resetPassword);
 
+// I am defining a GET route to safely check if email SMTP is configured in the environment.
+router.get('/status', (req, res) => {
+    // I am checking if both EMAIL_USER and EMAIL_PASS are present.
+    const isConfigured = Boolean(process.env.EMAIL_USER && process.env.EMAIL_PASS);
+    // I am returning the configuration status without exposing sensitive credentials.
+    res.json({
+        ok: true,
+        smtpConfigured: isConfigured,
+        sender: isConfigured ? `${process.env.EMAIL_USER.slice(0, 3)}***@gmail.com` : 'Not Configured'
+    });
+});
+
 // I am exporting the router to use it in server.js.
 module.exports = router;

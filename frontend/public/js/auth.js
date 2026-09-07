@@ -71,16 +71,22 @@ document.addEventListener('DOMContentLoaded', () => {
         clearFieldFeedback('signup-password-msg', 'signup-password-group');
     };
 
-    // I am creating a helper to clear all feedback messages on the forgot/reset password form.
+    // I am creating a helper to clear feedback messages on the forgot password request form.
     const clearAllForgotFeedback = () => {
         // I am hiding and clearing the forgot-section banner.
         clearBanner('forgot-banner');
         // I am clearing feedback on the registered email field.
         clearFieldFeedback('forgot-email-msg', 'forgot-email-group');
+    };
+
+    // I am creating a helper to clear feedback messages on the new password reset form.
+    const clearAllResetFeedback = () => {
+        // I am hiding and clearing the reset-section banner.
+        clearBanner('reset-banner');
         // I am clearing feedback on the new password field.
-        clearFieldFeedback('forgot-password-msg', 'forgot-password-group');
+        clearFieldFeedback('reset-password-msg', 'reset-password-group');
         // I am clearing feedback on the confirm password field.
-        clearFieldFeedback('forgot-confirm-password-msg', 'forgot-confirm-password-group');
+        clearFieldFeedback('reset-confirm-password-msg', 'reset-confirm-password-group');
     };
 
     // Live typing listeners to immediately clear errors
@@ -121,26 +127,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // I am selecting the forgot password input elements for live typing feedback clearing.
+    // I am selecting the forgot password email input for live feedback clearing.
     const forgotEmailInput = document.getElementById('forgot-email');
-    const forgotPasswordInput = document.getElementById('forgot-password');
-    const forgotConfirmPasswordInput = document.getElementById('forgot-confirm-password');
     if (forgotEmailInput) {
         forgotEmailInput.addEventListener('input', () => {
             clearFieldFeedback('forgot-email-msg', 'forgot-email-group');
             clearBanner('forgot-banner');
         });
     }
-    if (forgotPasswordInput) {
-        forgotPasswordInput.addEventListener('input', () => {
-            clearFieldFeedback('forgot-password-msg', 'forgot-password-group');
-            clearBanner('forgot-banner');
+
+    // I am selecting the reset password input elements for live feedback clearing.
+    const resetPasswordInput = document.getElementById('reset-password');
+    const resetConfirmPasswordInput = document.getElementById('reset-confirm-password');
+    if (resetPasswordInput) {
+        resetPasswordInput.addEventListener('input', () => {
+            clearFieldFeedback('reset-password-msg', 'reset-password-group');
+            clearBanner('reset-banner');
         });
     }
-    if (forgotConfirmPasswordInput) {
-        forgotConfirmPasswordInput.addEventListener('input', () => {
-            clearFieldFeedback('forgot-confirm-password-msg', 'forgot-confirm-password-group');
-            clearBanner('forgot-banner');
+    if (resetConfirmPasswordInput) {
+        resetConfirmPasswordInput.addEventListener('input', () => {
+            clearFieldFeedback('reset-confirm-password-msg', 'reset-confirm-password-group');
+            clearBanner('reset-banner');
         });
     }
 
@@ -187,10 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPasswordToggle('toggle-login-password', 'login-password');
     // I am initializing the show/hide password toggle for the signup form.
     setupPasswordToggle('toggle-signup-password', 'signup-password');
-    // I am initializing the show/hide password toggle for the reset password form.
-    setupPasswordToggle('toggle-forgot-password', 'forgot-password');
+    // I am initializing the show/hide password toggle for the new reset password form.
+    setupPasswordToggle('toggle-reset-password', 'reset-password');
     // I am initializing the show/hide password toggle for the confirm reset password field.
-    setupPasswordToggle('toggle-forgot-confirm-password', 'forgot-confirm-password');
+    setupPasswordToggle('toggle-reset-confirm-password', 'reset-confirm-password');
 
     // Handle Login Form Submission
     if (loginForm) {
@@ -351,88 +359,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // I am selecting the forgot/reset password form and button elements.
+    // I am selecting the forgot password form and submit button elements.
     const forgotForm = document.getElementById('forgot-form');
     const forgotBtn = document.getElementById('forgot-btn');
 
-    // I am setting up the submission listener for the forgot password form.
+    // I am setting up the submission listener for the forgot password email request form.
     if (forgotForm) {
         forgotForm.addEventListener('submit', async (e) => {
-            // I am preventing the default form reload.
+            // I am preventing the default form reload behavior.
             e.preventDefault();
-            // I am clearing previous feedback messages.
+            // I am clearing existing feedback messages on the forgot form.
             clearAllForgotFeedback();
 
+            // I am extracting and trimming the email input value.
             const email = forgotEmailInput ? forgotEmailInput.value.trim() : '';
-            const newPassword = forgotPasswordInput ? forgotPasswordInput.value : '';
-            const confirmPassword = forgotConfirmPasswordInput ? forgotConfirmPasswordInput.value : '';
 
-            let hasError = false;
-            // I am validating the email input.
+            // I am checking if an email was entered.
             if (!email) {
-                setFieldFeedback('forgot-email-msg', 'forgot-email-group', 'Please enter your registered email.', 'error');
-                hasError = true;
-            }
-            // I am validating the password length.
-            if (!newPassword || newPassword.length < 6) {
-                setFieldFeedback('forgot-password-msg', 'forgot-password-group', 'New password must be at least 6 characters.', 'error');
-                hasError = true;
-            }
-            // I am verifying that both entered passwords match.
-            if (newPassword && newPassword !== confirmPassword) {
-                setFieldFeedback('forgot-confirm-password-msg', 'forgot-confirm-password-group', 'Passwords do not match.', 'error');
-                hasError = true;
+                setFieldFeedback('forgot-email-msg', 'forgot-email-group', 'Please enter your registered email address.', 'error');
+                return;
             }
 
-            if (hasError) return;
-
-            const originalBtnHtml = forgotBtn ? forgotBtn.innerHTML : '';
+            // I am saving original button HTML and activating the loading state.
+            const originalBtnHtml = forgotBtn ? forgotBtn.innerHTML : 'Send Reset Link';
             if (forgotBtn) {
                 forgotBtn.disabled = true;
-                forgotBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Resetting...';
+                forgotBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending Link...';
             }
 
             try {
-                // I am sending a POST request to the reset-password endpoint.
-                const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+                // I am sending a POST request to the forgot-password API endpoint.
+                const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, newPassword })
+                    body: JSON.stringify({ email })
                 });
 
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    // I am displaying the success notification banner.
-                    setBanner('forgot-banner', data.message || 'Password reset successfully! Redirecting to sign in...', 'success');
-                    // I am resetting the forgot password form inputs.
-                    forgotForm.reset();
-                    // I am automatically redirecting to the sign-in screen after a short delay.
-                    setTimeout(() => {
-                        clearAllForgotFeedback();
-                        if (loginSection && forgotSection) {
-                            forgotSection.style.display = 'none';
-                            loginSection.style.display = 'block';
-                            if (loginEmailInput) {
-                                loginEmailInput.value = email;
-                                loginEmailInput.focus();
-                            }
-                            setBanner('login-banner', 'Password updated! Please sign in with your new password.', 'success');
-                        }
-                    }, 1500);
+                    let successMessage = data.message || 'A secure password reset link has been dispatched to your email address.';
+                    // I am checking if this was a simulated email (when SMTP credentials are not yet configured on server).
+                    if (data.simulated && data.resetUrl) {
+                        successMessage += `<div style="margin-top: 10px; font-size: 13px; background: rgba(99,102,241,0.15); padding: 8px 12px; border-radius: 6px; border: 1px dashed rgba(99,102,241,0.4);">
+                            <strong>Dev Simulation:</strong> SMTP not configured. <a href="${data.resetUrl}" style="color: #6366f1; text-decoration: underline; font-weight: 600;">Click here to open Reset Password Screen</a>
+                        </div>`;
+                    }
+                    // I am displaying the success feedback banner.
+                    setBanner('forgot-banner', successMessage, 'success');
+                    // I am clearing the email input.
+                    if (forgotEmailInput) forgotEmailInput.value = '';
                 } else {
                     if (data.field === 'email') {
-                        setFieldFeedback('forgot-email-msg', 'forgot-email-group', data.message || 'No account found with this email.', 'error');
-                    } else if (data.field === 'password') {
-                        setFieldFeedback('forgot-password-msg', 'forgot-password-group', data.message || 'Invalid password.', 'error');
+                        setFieldFeedback('forgot-email-msg', 'forgot-email-group', data.message || 'No account registered with this email address.', 'error');
                     } else {
-                        setBanner('forgot-banner', data.message || 'Failed to reset password. Please try again.', 'error');
+                        setBanner('forgot-banner', data.message || 'Failed to dispatch reset link. Please try again.', 'error');
                     }
                 }
             } catch (error) {
-                console.error('Error resetting password:', error);
+                console.error('Error dispatching reset link:', error);
                 setBanner('forgot-banner', 'Unable to reach server. Please ensure the backend is running.', 'error');
             } finally {
+                // I am restoring the button to its active state.
                 if (forgotBtn) {
                     forgotBtn.disabled = false;
                     forgotBtn.innerHTML = originalBtnHtml;
@@ -441,23 +429,120 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Toggle between Login, Signup, and Forgot Password views
+    // I am selecting the reset password form and submit button elements.
+    const resetForm = document.getElementById('reset-form');
+    const resetBtn = document.getElementById('reset-btn');
+
+    // I am setting up the submission listener for the new password reset form.
+    if (resetForm) {
+        resetForm.addEventListener('submit', async (e) => {
+            // I am preventing the default form reload behavior.
+            e.preventDefault();
+            // I am clearing existing feedback messages on the reset form.
+            clearAllResetFeedback();
+
+            // I am extracting the token from URL query parameters.
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('resetToken') || urlParams.get('token');
+
+            // I am ensuring a valid reset token is present.
+            if (!token) {
+                setBanner('reset-banner', 'Password reset token is missing. Please use the link provided in your email.', 'error');
+                return;
+            }
+
+            // I am reading the new and confirmed password values.
+            const newPassword = resetPasswordInput ? resetPasswordInput.value : '';
+            const confirmPassword = resetConfirmPasswordInput ? resetConfirmPasswordInput.value : '';
+
+            let hasError = false;
+            // I am validating password length requirement.
+            if (!newPassword || newPassword.length < 6) {
+                setFieldFeedback('reset-password-msg', 'reset-password-group', 'Password must be at least 6 characters.', 'error');
+                hasError = true;
+            }
+            // I am checking if password and confirmation match.
+            if (newPassword && newPassword !== confirmPassword) {
+                setFieldFeedback('reset-confirm-password-msg', 'reset-confirm-password-group', 'Passwords do not match.', 'error');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            // I am saving original button HTML and activating the loading state.
+            const originalBtnHtml = resetBtn ? resetBtn.innerHTML : 'Update Password';
+            if (resetBtn) {
+                resetBtn.disabled = true;
+                resetBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Updating Password...';
+            }
+
+            try {
+                // I am sending a POST request to update the password with the verified token.
+                const response = await fetch(`${API_BASE_URL}/auth/reset-password/${encodeURIComponent(token)}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ newPassword })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // I am displaying the success feedback banner.
+                    setBanner('reset-banner', data.message || 'Password reset successfully! Redirecting to sign in...', 'success');
+                    // I am clearing the reset form inputs.
+                    resetForm.reset();
+
+                    // I am clearing the token from the browser address bar cleanly without page reload.
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+
+                    // I am redirecting to the sign in view after a short pause.
+                    setTimeout(() => {
+                        hideAllAuthSections();
+                        if (loginSection) {
+                            loginSection.style.display = 'block';
+                            setBanner('login-banner', 'Password updated! Please sign in with your new credentials.', 'success');
+                        }
+                    }, 1800);
+                } else {
+                    setBanner('reset-banner', data.message || 'This reset link has expired or is invalid. Please request a new one.', 'error');
+                }
+            } catch (error) {
+                console.error('Error resetting password:', error);
+                setBanner('reset-banner', 'Unable to reach server. Please ensure the backend is running.', 'error');
+            } finally {
+                // I am restoring the update password button.
+                if (resetBtn) {
+                    resetBtn.disabled = false;
+                    resetBtn.innerHTML = originalBtnHtml;
+                }
+            }
+        });
+    }
+
+    // Toggle between Login, Signup, Forgot Password, and Reset Password views
     const showSignupLink = document.getElementById('show-signup');
     const showLoginLink = document.getElementById('show-login');
     const showForgotLink = document.getElementById('show-forgot');
     const forgotToLoginLink = document.getElementById('forgot-to-login');
+    const resetToLoginLink = document.getElementById('reset-to-login');
+
     const loginSection = document.getElementById('login-section');
     const signupSection = document.getElementById('signup-section');
     const forgotSection = document.getElementById('forgot-section');
+    const resetSection = document.getElementById('reset-section');
 
     // I am defining a helper to hide all auth sections and reset their feedback messages.
     const hideAllAuthSections = () => {
         clearAllLoginFeedback();
         clearAllSignupFeedback();
         clearAllForgotFeedback();
+        clearAllResetFeedback();
         if (loginSection) loginSection.style.display = 'none';
         if (signupSection) signupSection.style.display = 'none';
         if (forgotSection) forgotSection.style.display = 'none';
+        if (resetSection) resetSection.style.display = 'none';
     };
 
     if (showSignupLink) {
@@ -495,6 +580,30 @@ document.addEventListener('DOMContentLoaded', () => {
             hideAllAuthSections();
             if (loginSection) loginSection.style.display = 'block';
         });
+    }
+
+    if (resetToLoginLink) {
+        resetToLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllAuthSections();
+            // I am clearing token from the URL if user cancels and goes to login.
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+            if (loginSection) loginSection.style.display = 'block';
+        });
+    }
+
+    // I am checking if a resetToken was passed via the URL query parameters on page load.
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialResetToken = urlParams.get('resetToken') || urlParams.get('token');
+    if (initialResetToken) {
+        // I am hiding all standard sections and displaying the password reset form.
+        hideAllAuthSections();
+        if (resetSection) {
+            resetSection.style.display = 'block';
+            setBanner('reset-banner', 'Secure reset link verified! Please enter your new password below.', 'info');
+        }
     }
 });
 

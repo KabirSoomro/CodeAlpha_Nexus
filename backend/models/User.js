@@ -32,9 +32,24 @@ const userSchema = new mongoose.Schema({
         // I am making the password field mandatory.
         required: true
     // I am closing the password field definition.
+    },
+    // I am storing the hashed password reset token.
+    resetPasswordToken: {
+        // I am defining the type as String.
+        type: String
+    // I am closing the resetPasswordToken field.
+    },
+    // I am storing the expiration timestamp for the password reset token.
+    resetPasswordExpire: {
+        // I am defining the type as Date.
+        type: Date
+    // I am closing the resetPasswordExpire field.
     }
 // I am adding timestamps to automatically record createdAt and updatedAt fields.
 }, { timestamps: true });
+
+// I am importing the built-in crypto module to generate secure random reset tokens.
+const crypto = require('crypto');
 
 // I am adding a pre-save hook to hash the password before saving the user document.
 userSchema.pre('save', async function() {
@@ -56,6 +71,19 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
     // I am returning the boolean result of the bcrypt comparison.
     return await bcrypt.compare(enteredPassword, this.password);
 // I am closing the matchPassword method definition.
+};
+
+// I am defining a method to generate and hash a password reset token.
+userSchema.methods.getResetPasswordToken = function() {
+    // I am generating a cryptographically secure 20-byte random hex token.
+    const resetToken = crypto.randomBytes(20).toString('hex');
+    // I am hashing the token with SHA-256 and storing it in the user document.
+    this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    // I am setting the reset token expiration to 30 minutes from now.
+    this.resetPasswordExpire = Date.now() + 30 * 60 * 1000;
+    // I am returning the unhashed reset token to be sent in the email.
+    return resetToken;
+// I am closing the getResetPasswordToken method.
 };
 
 // I am creating the User model from the schema.

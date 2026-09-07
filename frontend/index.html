@@ -135,15 +135,15 @@
             <!-- I am closing the signup section. -->
             </div>
 
-            <!-- I am creating a section for the forgot / reset password form (hidden by default). -->
+            <!-- I am creating a section for requesting a password reset email (hidden by default). -->
             <div id="forgot-section" style="display: none;">
                 <!-- I am adding a heading to indicate this is the password recovery screen. -->
-                <h2>Reset Password</h2>
-                <!-- I am providing an instructional description for the recovery step. -->
-                <p class="form-desc">Enter your registered email and choose a new password.</p>
-                <!-- Banner for reset password feedback and notifications -->
+                <h2>Forgot Password?</h2>
+                <!-- I am providing an instructional description for the email recovery step. -->
+                <p class="form-desc">Enter your registered email address and we'll send you a secure link to reset your password.</p>
+                <!-- Banner for forgot password feedback and notifications -->
                 <div id="forgot-banner" class="form-banner" style="display: none;"></div>
-                <!-- I am creating the password reset form element. -->
+                <!-- I am creating the forgot password form element. -->
                 <form id="forgot-form" class="modern-form" novalidate>
                     <!-- Field wrapper for registered email -->
                     <div class="field-wrapper">
@@ -153,39 +153,58 @@
                         </div>
                         <div class="field-feedback" id="forgot-email-msg"></div>
                     </div>
-                    <!-- Field wrapper for new password -->
-                    <div class="field-wrapper">
-                        <div class="input-group" id="forgot-password-group">
-                            <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="forgot-password" class="has-password-toggle" placeholder="New Password (min 6 chars)" required autocomplete="new-password">
-                            <!-- I am adding a button to toggle new password visibility. -->
-                            <button type="button" class="password-toggle-btn" id="toggle-forgot-password" title="Show password" aria-label="Toggle password visibility">
-                                <i class="fa-solid fa-eye"></i>
-                            <!-- I am closing the toggle button. -->
-                            </button>
-                        </div>
-                        <div class="field-feedback" id="forgot-password-msg"></div>
-                    </div>
-                    <!-- Field wrapper for confirm password -->
-                    <div class="field-wrapper">
-                        <div class="input-group" id="forgot-confirm-password-group">
-                            <i class="fa-solid fa-shield-halved"></i>
-                            <input type="password" id="forgot-confirm-password" class="has-password-toggle" placeholder="Confirm New Password" required autocomplete="new-password">
-                            <!-- I am adding a button to toggle confirm password visibility. -->
-                            <button type="button" class="password-toggle-btn" id="toggle-forgot-confirm-password" title="Show password" aria-label="Toggle password visibility">
-                                <i class="fa-solid fa-eye"></i>
-                            <!-- I am closing the toggle button. -->
-                            </button>
-                        </div>
-                        <div class="field-feedback" id="forgot-confirm-password-msg"></div>
-                    </div>
-                    <!-- I am creating the glowing submit button for password reset. -->
-                    <button type="submit" id="forgot-btn" class="btn-glow">Reset Password <i class="fa-solid fa-key"></i></button>
+                    <!-- I am creating the glowing submit button for sending the reset link. -->
+                    <button type="submit" id="forgot-btn" class="btn-glow">Send Reset Link <i class="fa-solid fa-paper-plane"></i></button>
                 <!-- I am closing the forgot form. -->
                 </form>
                 <!-- I am adding a toggle link to return to the sign in view. -->
                 <p class="auth-toggle">Remember your password? <a href="#" id="forgot-to-login">Back to Sign in</a></p>
             <!-- I am closing the forgot section. -->
+            </div>
+
+            <!-- I am creating a section for setting a new password via the secure email token link (hidden by default). -->
+            <div id="reset-section" style="display: none;">
+                <!-- I am adding a heading to indicate this is the new password entry screen. -->
+                <h2>Create New Password</h2>
+                <!-- I am providing instructions for setting the new password. -->
+                <p class="form-desc">Please choose a strong, new password for your account.</p>
+                <!-- Banner for password reset feedback and notifications -->
+                <div id="reset-banner" class="form-banner" style="display: none;"></div>
+                <!-- I am creating the new password submission form element. -->
+                <form id="reset-form" class="modern-form" novalidate>
+                    <!-- Field wrapper for new password -->
+                    <div class="field-wrapper">
+                        <div class="input-group" id="reset-password-group">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="reset-password" class="has-password-toggle" placeholder="New Password (min 6 chars)" required autocomplete="new-password">
+                            <!-- I am adding a button to toggle new password visibility. -->
+                            <button type="button" class="password-toggle-btn" id="toggle-reset-password" title="Show password" aria-label="Toggle password visibility">
+                                <i class="fa-solid fa-eye"></i>
+                            <!-- I am closing the toggle button. -->
+                            </button>
+                        </div>
+                        <div class="field-feedback" id="reset-password-msg"></div>
+                    </div>
+                    <!-- Field wrapper for confirm password -->
+                    <div class="field-wrapper">
+                        <div class="input-group" id="reset-confirm-password-group">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <input type="password" id="reset-confirm-password" class="has-password-toggle" placeholder="Confirm New Password" required autocomplete="new-password">
+                            <!-- I am adding a button to toggle confirm password visibility. -->
+                            <button type="button" class="password-toggle-btn" id="toggle-reset-confirm-password" title="Show password" aria-label="Toggle password visibility">
+                                <i class="fa-solid fa-eye"></i>
+                            <!-- I am closing the toggle button. -->
+                            </button>
+                        </div>
+                        <div class="field-feedback" id="reset-confirm-password-msg"></div>
+                    </div>
+                    <!-- I am creating the glowing submit button for saving the new password. -->
+                    <button type="submit" id="reset-btn" class="btn-glow">Update Password <i class="fa-solid fa-check-double"></i></button>
+                <!-- I am closing the reset form. -->
+                </form>
+                <!-- I am adding a toggle link to return to the sign in view. -->
+                <p class="auth-toggle">Cancel and <a href="#" id="reset-to-login">Sign in</a></p>
+            <!-- I am closing the reset section. -->
             </div>
 
         <!-- I am closing the glass-panel auth-container. -->

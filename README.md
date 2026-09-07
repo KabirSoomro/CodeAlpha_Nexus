@@ -11,7 +11,10 @@
   <!-- Primary Action Badges -->
   <p align="center">
     <a href="https://code-alpha-nexus-laqo.vercel.app" target="_blank">
-      <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Web_App-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
+      <img src="https://img.shields.io/badge/🚀_Live_App-Vercel_Hosted-6366F1?style=for-the-badge&logo=vercel&logoColor=white" alt="Live App on Vercel" />
+    </a>
+    <a href="https://codealpha-nexus-backend.onrender.com" target="_blank">
+      <img src="https://img.shields.io/badge/⚡_Backend_API-Render_Live-46E3B7?style=for-the-badge&logo=render&logoColor=black" alt="Render Backend API" />
     </a>
     <a href="https://www.linkedin.com/posts/your-linkedin-video-link" target="_blank">
       <img src="https://img.shields.io/badge/🎥_Demo_Video-Watch_on_LinkedIn-E11D48?style=for-the-badge&logo=youtube&logoColor=white" alt="Live Demo Video" />
@@ -37,6 +40,7 @@
 ---
 
 ## 📌 Table of Contents
+- [Live Production Deployments](#-live-production-deployments)
 - [Project Overview](#-project-overview)
 - [Key Features](#-key-features)
 - [System Architecture & Data Flow](#-system-architecture--data-flow)
@@ -46,6 +50,23 @@
 - [Getting Started & Local Setup](#-getting-started--local-setup)
 - [Database Configuration (MongoDB Atlas)](#-database-configuration-mongodb-atlas)
 - [Author & Acknowledgments](#-author--acknowledgments)
+
+---
+
+## 🌐 Live Production Deployments
+
+Experience the application live in your browser or explore the production APIs:
+
+| Component | Platform | Status | Live Link |
+| :--- | :--- | :--- | :--- |
+| **Frontend Web Application** | **Vercel** | ![Online](https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square) | [https://code-alpha-nexus-laqo.vercel.app](https://code-alpha-nexus-laqo.vercel.app) |
+| **Backend REST & WebSocket** | **Render** | ![Live](https://img.shields.io/badge/Status-Live-brightgreen?style=flat-square) | [https://codealpha-nexus-backend.onrender.com](https://codealpha-nexus-backend.onrender.com) |
+| **Database Cluster** | **MongoDB Atlas** | ![Active](https://img.shields.io/badge/Cluster-Active-success?style=flat-square) | Cloud Hosted (AWS Sharded Cluster) |
+| **Source Code Repository** | **GitHub** | ![Public](https://img.shields.io/badge/Repo-Public-blue?style=flat-square) | [KabirSoomro/CodeAlpha_Nexus](https://github.com/KabirSoomro/CodeAlpha_Nexus) |
+| **LinkedIn Demo Video** | **LinkedIn** | ![Video](https://img.shields.io/badge/Walkthrough-Watch_Now-E11D48?style=flat-square) | [Watch Walkthrough](https://www.linkedin.com/posts/your-linkedin-video-link) |
+| **Developer Profile** | **LinkedIn** | ![Profile](https://img.shields.io/badge/Connect-Kabeer_Soomro-0A66C2?style=flat-square) | [linkedin.com/in/kabeersoomro](https://www.linkedin.com/in/kabeersoomro) |
+
+> 💡 **Quick Access:** Click on the **[Frontend Application](https://code-alpha-nexus-laqo.vercel.app)** link above to test instant signup, project creation, task management, and drag-and-drop Kanban synchronization in real-time.
 
 ---
 

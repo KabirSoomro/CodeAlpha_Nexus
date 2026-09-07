@@ -65,7 +65,12 @@
                     <div class="field-wrapper">
                         <div class="input-group" id="login-password-group">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password">
+                            <input type="password" id="login-password" class="has-password-toggle" placeholder="Password" required autocomplete="current-password">
+                            <!-- I am adding a button to toggle password visibility. -->
+                            <button type="button" class="password-toggle-btn" id="toggle-login-password" title="Show password" aria-label="Toggle password visibility">
+                                <i class="fa-solid fa-eye"></i>
+                            <!-- I am closing the toggle button. -->
+                            </button>
                         </div>
                         <div class="field-feedback" id="login-password-msg"></div>
                     </div>
@@ -106,7 +111,12 @@
                     <div class="field-wrapper">
                         <div class="input-group" id="signup-password-group">
                             <i class="fa-solid fa-lock"></i>
-                            <input type="password" id="signup-password" placeholder="Password" required autocomplete="new-password">
+                            <input type="password" id="signup-password" class="has-password-toggle" placeholder="Password" required autocomplete="new-password">
+                            <!-- I am adding a button to toggle password visibility. -->
+                            <button type="button" class="password-toggle-btn" id="toggle-signup-password" title="Show password" aria-label="Toggle password visibility">
+                                <i class="fa-solid fa-eye"></i>
+                            <!-- I am closing the toggle button. -->
+                            </button>
                         </div>
                         <div class="field-feedback" id="signup-password-msg"></div>
                     </div>

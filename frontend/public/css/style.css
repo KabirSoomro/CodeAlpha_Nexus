@@ -315,6 +315,55 @@ body {
     transition: all 0.3s ease;
 /* I am closing the input style. */
 }
+
+/* I am adding extra right-padding for input fields equipped with a password toggle button. */
+.input-group input.has-password-toggle {
+    padding-right: 44px;
+}
+
+/* I am styling the password visibility toggle button positioned inside the input group on the right. */
+.password-toggle-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+    z-index: 2;
+}
+
+/* I am styling the hover state for the password toggle button. */
+.password-toggle-btn:hover {
+    color: var(--primary);
+    background-color: rgba(255, 255, 255, 0.06);
+    transform: translateY(-50%) scale(1.08);
+}
+
+/* I am styling the focus state for keyboard navigation accessibility. */
+.password-toggle-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* I am ensuring the icon inside the toggle button is positioned naturally inside the button element. */
+.input-group .password-toggle-btn i {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    color: inherit;
+    font-size: inherit;
+    pointer-events: none;
+}
 /* I am adjusting padding for modern-inputs that don't have icons. */
 .modern-input {
 /* I am setting standard padding. */

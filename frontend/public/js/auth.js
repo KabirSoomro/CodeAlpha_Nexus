@@ -109,6 +109,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // I am creating a helper function to set up password show/hide visibility toggling.
+    const setupPasswordToggle = (toggleBtnId, passwordInputId) => {
+        // I am querying the toggle button element from the DOM.
+        const toggleBtn = document.getElementById(toggleBtnId);
+        // I am querying the corresponding password input element from the DOM.
+        const passwordInput = document.getElementById(passwordInputId);
+        
+        // I am verifying that both elements exist before attaching the listener.
+        if (!toggleBtn || !passwordInput) return;
+
+        // I am listening for click events on the password toggle button.
+        toggleBtn.addEventListener('click', (e) => {
+            // I am preventing default button behavior or form submissions.
+            e.preventDefault();
+            // I am checking if the input is currently masked as a password.
+            const isPassword = passwordInput.type === 'password';
+            // I am toggling the input type between text and password.
+            passwordInput.type = isPassword ? 'text' : 'password';
+
+            // I am selecting the icon element inside the toggle button.
+            const icon = toggleBtn.querySelector('i');
+            if (icon) {
+                if (isPassword) {
+                    // I am updating the icon to an eye with a slash when password is shown.
+                    icon.className = 'fa-solid fa-eye-slash';
+                    // I am updating the accessibility title and aria-label to Hide password.
+                    toggleBtn.setAttribute('title', 'Hide password');
+                    toggleBtn.setAttribute('aria-label', 'Hide password');
+                } else {
+                    // I am restoring the eye icon when password is hidden.
+                    icon.className = 'fa-solid fa-eye';
+                    // I am updating the accessibility title and aria-label to Show password.
+                    toggleBtn.setAttribute('title', 'Show password');
+                    toggleBtn.setAttribute('aria-label', 'Show password');
+                }
+            }
+        });
+    };
+
+    // I am initializing the show/hide password toggle for the login form.
+    setupPasswordToggle('toggle-login-password', 'login-password');
+    // I am initializing the show/hide password toggle for the signup form.
+    setupPasswordToggle('toggle-signup-password', 'signup-password');
+
     // Handle Login Form Submission
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {

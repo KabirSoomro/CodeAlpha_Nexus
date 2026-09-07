@@ -1,5 +1,5 @@
-// I am defining a base URL constant for API calls to the backend.
-const API_BASE_URL = 'http://localhost:5000/api';
+// I am relying on the centralized API_BASE_URL declared in config.js.
+// I am ensuring global accessibility for all subsequent utility and API operations.
 
 // I am defining a function to retrieve the JWT token from local storage.
 function getToken() {

@@ -31,17 +31,25 @@ const server = http.createServer(app);
 const io = new Server(server, {
     // I am configuring CORS for socket.io to allow all origins.
     cors: {
-        // I am allowing any origin to connect for this demo.
+        // I am allowing any origin to connect to prevent CORS blocking between Vercel and Render.
         origin: '*',
-        // I am allowing GET and POST methods.
+        // I am allowing standard real-time HTTP methods.
         methods: ['GET', 'POST']
     // I am closing the cors configuration object.
     }
 // I am closing the Server instantiation.
 });
 
-// I am applying the cors middleware to the express app.
-app.use(cors());
+// I am applying the cors middleware to the express app to permit cross-origin requests from any client.
+app.use(cors({
+    // I am permitting requests from any origin to prevent CORS blocking between frontend and backend hosts.
+    origin: '*',
+    // I am permitting standard RESTful HTTP methods.
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    // I am allowing essential request headers including authentication tokens.
+    allowedHeaders: ['Content-Type', 'Authorization']
+// I am closing the cors middleware configuration.
+}));
 // I am applying the express.json middleware to parse JSON request bodies.
 app.use(express.json());
 // I am importing the path module to resolve file paths safely.

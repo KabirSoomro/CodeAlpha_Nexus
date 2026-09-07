@@ -3,8 +3,10 @@ let socket;
 
 // I am defining a function to initialize the socket connection.
 function initSocket() {
-    // I am connecting to the socket.io server at the root URL.
-    socket = io('http://localhost:5000');
+    // I am determining the target socket server URL using the centralized BACKEND_URL from config.js.
+    const socketServerUrl = typeof BACKEND_URL !== 'undefined' ? BACKEND_URL : (window.location.origin || 'http://localhost:5000');
+    // I am connecting to the socket.io server using the centralized backend URL.
+    socket = io(socketServerUrl);
 
     // I am listening for the 'connect' event to confirm successful connection.
     socket.on('connect', () => {

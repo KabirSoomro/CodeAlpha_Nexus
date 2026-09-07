@@ -398,16 +398,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    let successMessage = data.message || 'A secure password reset link has been dispatched to your email address.';
-                    // I am checking if this was a simulated email (when SMTP credentials are not yet configured on server).
-                    if (data.simulated && data.resetUrl) {
-                        successMessage += `<div style="margin-top: 10px; font-size: 13px; background: rgba(99,102,241,0.15); padding: 8px 12px; border-radius: 6px; border: 1px dashed rgba(99,102,241,0.4);">
-                            <strong>Dev Simulation:</strong> SMTP not configured. <a href="${data.resetUrl}" style="color: #6366f1; text-decoration: underline; font-weight: 600;">Click here to open Reset Password Screen</a>
-                        </div>`;
-                    }
-                    // I am displaying the success feedback banner.
-                    setBanner('forgot-banner', successMessage, 'success');
-                    // I am clearing the email input.
+                    // I am displaying the clean, professional success feedback banner.
+                    setBanner('forgot-banner', data.message || 'A secure password reset link has been dispatched to your registered email address. Please check your inbox (and spam folder).', 'success');
+                    // I am clearing the email input field.
                     if (forgotEmailInput) forgotEmailInput.value = '';
                 } else {
                     if (data.field === 'email') {

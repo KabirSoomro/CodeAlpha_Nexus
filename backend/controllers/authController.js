@@ -240,12 +240,10 @@ const forgotPassword = async (req, res) => {
             resetUrl
         });
 
-        // I am returning a success response to the client.
+        // I am returning a clean success response to the client without exposing internal reset URLs.
         res.status(200).json({
             success: true,
-            simulated: emailResult && emailResult.simulated,
-            resetUrl: emailResult && emailResult.simulated ? resetUrl : undefined,
-            message: 'A secure password reset link has been dispatched to your registered email address.'
+            message: 'A secure password reset link has been dispatched to your registered email address. Please check your inbox (and spam folder).'
         });
     // I am catching any unexpected errors during the process.
     } catch (error) {

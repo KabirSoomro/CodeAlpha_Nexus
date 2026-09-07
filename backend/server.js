@@ -8,7 +8,11 @@ const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 // I am importing the cors middleware to allow cross-origin requests.
 const cors = require('cors');
-// I am importing dotenv to load environment variables from the .env file.
+// I am importing the path module to resolve file paths safely.
+const path = require('path');
+// I am loading environment variables from the backend folder .env file.
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+// I am loading any root level environment variables as fallback.
 require('dotenv').config();
 
 // I am importing the database connection function.
@@ -40,20 +44,10 @@ const io = new Server(server, {
 // I am closing the Server instantiation.
 });
 
-// I am applying the cors middleware to the express app to permit cross-origin requests from any client.
-app.use(cors({
-    // I am permitting requests from any origin to prevent CORS blocking between frontend and backend hosts.
-    origin: '*',
-    // I am permitting standard RESTful HTTP methods.
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    // I am allowing essential request headers including authentication tokens.
-    allowedHeaders: ['Content-Type', 'Authorization']
-// I am closing the cors middleware configuration.
-}));
+// I am applying the cors middleware to the express app so the frontend can securely communicate with the backend.
+app.use(cors());
 // I am applying the express.json middleware to parse JSON request bodies.
 app.use(express.json());
-// I am importing the path module to resolve file paths safely.
-const path = require('path');
 // I am serving static files from the frontend directory using path.join.
 app.use(express.static(path.join(__dirname, '../frontend')));
 

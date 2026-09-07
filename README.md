@@ -16,6 +16,12 @@
     <a href="https://www.youtube.com" target="_blank">
       <img src="https://img.shields.io/badge/Watch_on_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch on YouTube" />
     </a>
+    <a href="https://www.linkedin.com/posts/your-linkedin-video-link" target="_blank">
+      <img src="https://img.shields.io/badge/Watch_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Watch on LinkedIn" />
+    </a>
+    <a href="https://www.linkedin.com/in/kabir-soomro" target="_blank">
+      <img src="https://img.shields.io/badge/LinkedIn_Profile-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
+    </a>
   </p>
 
   <!-- Tech Stack Badges -->

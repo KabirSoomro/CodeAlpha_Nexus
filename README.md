@@ -11,13 +11,10 @@
   <!-- Primary Action Badges -->
   <p align="center">
     <a href="https://code-alpha-nexus-laqo.vercel.app" target="_blank">
-      <img src="https://img.shields.io/badge/Live_Demo-Visit_App-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
+      <img src="https://img.shields.io/badge/Live_Demo-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
     </a>
     <a href="https://www.youtube.com" target="_blank">
-      <img src="https://img.shields.io/badge/Demo_Video-Watch_on_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch on YouTube" />
-    </a>
-    <a href="https://www.linkedin.com/in/kabir-soomro" target="_blank">
-      <img src="https://img.shields.io/badge/Developer-Kabir_Soomro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
+      <img src="https://img.shields.io/badge/Watch_on_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch on YouTube" />
     </a>
   </p>
 

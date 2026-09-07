@@ -262,6 +262,50 @@ body {
 /* I am closing the section heading style. */
 }
 
+/* I am styling sub-headings or descriptions inside the auth forms. */
+.form-desc {
+/* I am setting a muted gray text color. */
+    color: var(--text-secondary);
+/* I am setting a readable smaller font size. */
+    font-size: 0.88rem;
+/* I am giving bottom margin before the form inputs. */
+    margin-bottom: 20px;
+/* I am closing the form-desc style. */
+}
+
+/* I am styling the sub-links container below input fields (e.g. forgot password). */
+.form-sub-links {
+/* I am using flexbox. */
+    display: flex;
+/* I am aligning links to the right edge. */
+    justify-content: flex-end;
+/* I am adding slight vertical spacing. */
+    margin-top: -4px;
+/* I am closing the form-sub-links container style. */
+}
+
+/* I am styling the forgot password trigger anchor link. */
+.forgot-link {
+/* I am setting a soft muted color. */
+    color: var(--text-secondary);
+/* I am setting a clean small font size. */
+    font-size: 0.85rem;
+/* I am removing default link underline. */
+    text-decoration: none;
+/* I am adding a color transition. */
+    transition: color 0.2s ease;
+/* I am closing the forgot-link style. */
+}
+
+/* I am highlighting the forgot link on hover. */
+.forgot-link:hover {
+/* I am tinting it to the primary brand accent. */
+    color: var(--primary);
+/* I am adding underline on hover. */
+    text-decoration: underline;
+/* I am closing the forgot-link hover style. */
+}
+
 /* --- I am defining Form & Input Styles --- */
 /* I am styling the modern form wrapper. */
 .modern-form {

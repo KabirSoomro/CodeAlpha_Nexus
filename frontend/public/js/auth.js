@@ -71,6 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
         clearFieldFeedback('signup-password-msg', 'signup-password-group');
     };
 
+    // I am creating a helper to clear all feedback messages on the forgot/reset password form.
+    const clearAllForgotFeedback = () => {
+        // I am hiding and clearing the forgot-section banner.
+        clearBanner('forgot-banner');
+        // I am clearing feedback on the registered email field.
+        clearFieldFeedback('forgot-email-msg', 'forgot-email-group');
+        // I am clearing feedback on the new password field.
+        clearFieldFeedback('forgot-password-msg', 'forgot-password-group');
+        // I am clearing feedback on the confirm password field.
+        clearFieldFeedback('forgot-confirm-password-msg', 'forgot-confirm-password-group');
+    };
+
     // Live typing listeners to immediately clear errors
     const loginEmailInput = document.getElementById('login-email');
     const loginPasswordInput = document.getElementById('login-password');
@@ -106,6 +118,29 @@ document.addEventListener('DOMContentLoaded', () => {
         signupPasswordInput.addEventListener('input', () => {
             clearFieldFeedback('signup-password-msg', 'signup-password-group');
             clearBanner('signup-banner');
+        });
+    }
+
+    // I am selecting the forgot password input elements for live typing feedback clearing.
+    const forgotEmailInput = document.getElementById('forgot-email');
+    const forgotPasswordInput = document.getElementById('forgot-password');
+    const forgotConfirmPasswordInput = document.getElementById('forgot-confirm-password');
+    if (forgotEmailInput) {
+        forgotEmailInput.addEventListener('input', () => {
+            clearFieldFeedback('forgot-email-msg', 'forgot-email-group');
+            clearBanner('forgot-banner');
+        });
+    }
+    if (forgotPasswordInput) {
+        forgotPasswordInput.addEventListener('input', () => {
+            clearFieldFeedback('forgot-password-msg', 'forgot-password-group');
+            clearBanner('forgot-banner');
+        });
+    }
+    if (forgotConfirmPasswordInput) {
+        forgotConfirmPasswordInput.addEventListener('input', () => {
+            clearFieldFeedback('forgot-confirm-password-msg', 'forgot-confirm-password-group');
+            clearBanner('forgot-banner');
         });
     }
 
@@ -152,6 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPasswordToggle('toggle-login-password', 'login-password');
     // I am initializing the show/hide password toggle for the signup form.
     setupPasswordToggle('toggle-signup-password', 'signup-password');
+    // I am initializing the show/hide password toggle for the reset password form.
+    setupPasswordToggle('toggle-forgot-password', 'forgot-password');
+    // I am initializing the show/hide password toggle for the confirm reset password field.
+    setupPasswordToggle('toggle-forgot-confirm-password', 'forgot-confirm-password');
 
     // Handle Login Form Submission
     if (loginForm) {
@@ -312,27 +351,149 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Toggle between Login and Signup forms
+    // I am selecting the forgot/reset password form and button elements.
+    const forgotForm = document.getElementById('forgot-form');
+    const forgotBtn = document.getElementById('forgot-btn');
+
+    // I am setting up the submission listener for the forgot password form.
+    if (forgotForm) {
+        forgotForm.addEventListener('submit', async (e) => {
+            // I am preventing the default form reload.
+            e.preventDefault();
+            // I am clearing previous feedback messages.
+            clearAllForgotFeedback();
+
+            const email = forgotEmailInput ? forgotEmailInput.value.trim() : '';
+            const newPassword = forgotPasswordInput ? forgotPasswordInput.value : '';
+            const confirmPassword = forgotConfirmPasswordInput ? forgotConfirmPasswordInput.value : '';
+
+            let hasError = false;
+            // I am validating the email input.
+            if (!email) {
+                setFieldFeedback('forgot-email-msg', 'forgot-email-group', 'Please enter your registered email.', 'error');
+                hasError = true;
+            }
+            // I am validating the password length.
+            if (!newPassword || newPassword.length < 6) {
+                setFieldFeedback('forgot-password-msg', 'forgot-password-group', 'New password must be at least 6 characters.', 'error');
+                hasError = true;
+            }
+            // I am verifying that both entered passwords match.
+            if (newPassword && newPassword !== confirmPassword) {
+                setFieldFeedback('forgot-confirm-password-msg', 'forgot-confirm-password-group', 'Passwords do not match.', 'error');
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            const originalBtnHtml = forgotBtn ? forgotBtn.innerHTML : '';
+            if (forgotBtn) {
+                forgotBtn.disabled = true;
+                forgotBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Resetting...';
+            }
+
+            try {
+                // I am sending a POST request to the reset-password endpoint.
+                const response = await fetch(`${API_BASE_URL}/auth/reset-password`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, newPassword })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // I am displaying the success notification banner.
+                    setBanner('forgot-banner', data.message || 'Password reset successfully! Redirecting to sign in...', 'success');
+                    // I am resetting the forgot password form inputs.
+                    forgotForm.reset();
+                    // I am automatically redirecting to the sign-in screen after a short delay.
+                    setTimeout(() => {
+                        clearAllForgotFeedback();
+                        if (loginSection && forgotSection) {
+                            forgotSection.style.display = 'none';
+                            loginSection.style.display = 'block';
+                            if (loginEmailInput) {
+                                loginEmailInput.value = email;
+                                loginEmailInput.focus();
+                            }
+                            setBanner('login-banner', 'Password updated! Please sign in with your new password.', 'success');
+                        }
+                    }, 1500);
+                } else {
+                    if (data.field === 'email') {
+                        setFieldFeedback('forgot-email-msg', 'forgot-email-group', data.message || 'No account found with this email.', 'error');
+                    } else if (data.field === 'password') {
+                        setFieldFeedback('forgot-password-msg', 'forgot-password-group', data.message || 'Invalid password.', 'error');
+                    } else {
+                        setBanner('forgot-banner', data.message || 'Failed to reset password. Please try again.', 'error');
+                    }
+                }
+            } catch (error) {
+                console.error('Error resetting password:', error);
+                setBanner('forgot-banner', 'Unable to reach server. Please ensure the backend is running.', 'error');
+            } finally {
+                if (forgotBtn) {
+                    forgotBtn.disabled = false;
+                    forgotBtn.innerHTML = originalBtnHtml;
+                }
+            }
+        });
+    }
+
+    // Toggle between Login, Signup, and Forgot Password views
     const showSignupLink = document.getElementById('show-signup');
     const showLoginLink = document.getElementById('show-login');
+    const showForgotLink = document.getElementById('show-forgot');
+    const forgotToLoginLink = document.getElementById('forgot-to-login');
     const loginSection = document.getElementById('login-section');
     const signupSection = document.getElementById('signup-section');
+    const forgotSection = document.getElementById('forgot-section');
 
-    if (showSignupLink && showLoginLink) {
+    // I am defining a helper to hide all auth sections and reset their feedback messages.
+    const hideAllAuthSections = () => {
+        clearAllLoginFeedback();
+        clearAllSignupFeedback();
+        clearAllForgotFeedback();
+        if (loginSection) loginSection.style.display = 'none';
+        if (signupSection) signupSection.style.display = 'none';
+        if (forgotSection) forgotSection.style.display = 'none';
+    };
+
+    if (showSignupLink) {
         showSignupLink.addEventListener('click', (e) => {
             e.preventDefault();
-            clearAllLoginFeedback();
-            clearAllSignupFeedback();
-            loginSection.style.display = 'none';
-            signupSection.style.display = 'block';
+            hideAllAuthSections();
+            if (signupSection) signupSection.style.display = 'block';
         });
+    }
 
+    if (showLoginLink) {
         showLoginLink.addEventListener('click', (e) => {
             e.preventDefault();
-            clearAllLoginFeedback();
-            clearAllSignupFeedback();
-            signupSection.style.display = 'none';
-            loginSection.style.display = 'block';
+            hideAllAuthSections();
+            if (loginSection) loginSection.style.display = 'block';
+        });
+    }
+
+    if (showForgotLink) {
+        showForgotLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllAuthSections();
+            if (forgotSection) {
+                forgotSection.style.display = 'block';
+                if (forgotEmailInput && loginEmailInput && loginEmailInput.value) {
+                    forgotEmailInput.value = loginEmailInput.value.trim();
+                }
+            }
+        });
+    }
+
+    if (forgotToLoginLink) {
+        forgotToLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideAllAuthSections();
+            if (loginSection) loginSection.style.display = 'block';
         });
     }
 });

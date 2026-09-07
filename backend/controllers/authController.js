@@ -153,5 +153,71 @@ const loginUser = async (req, res) => {
 // I am closing the loginUser function.
 };
 
+// I am defining the resetPassword controller function to securely reset a forgotten password.
+const resetPassword = async (req, res) => {
+    // I am starting a try-catch block to handle password reset errors.
+    try {
+        // I am extracting email and newPassword from the request body.
+        let { email, newPassword } = req.body;
+
+        // I am validating that both email and new password were provided.
+        if (!email || !newPassword) {
+            return res.status(400).json({
+                field: !email ? 'email' : 'password',
+                message: !email ? 'Please provide your registered email address.' : 'Please enter a new password.'
+            });
+        }
+
+        // I am sanitizing the email input.
+        email = email.trim().toLowerCase();
+
+        // I am checking password length constraints.
+        if (newPassword.length < 6) {
+            return res.status(400).json({
+                field: 'password',
+                message: 'Password must be at least 6 characters long.'
+            });
+        }
+
+        // I am checking database readiness.
+        if (!isDBReady()) {
+            return res.status(503).json({
+                field: 'general',
+                message: 'Database is currently connecting. Please try again shortly.'
+            });
+        }
+
+        // I am looking up the user in the database by their email.
+        const user = await User.findOne({ email });
+
+        // I am returning a 404 error if no account matches the given email.
+        if (!user) {
+            return res.status(404).json({
+                field: 'email',
+                accountExists: false,
+                message: 'No account registered with this email address.'
+            });
+        }
+
+        // I am updating the user's password; the pre-save hook will automatically hash it with bcrypt.
+        user.password = newPassword;
+        // I am saving the updated user document to MongoDB Atlas.
+        await user.save();
+
+        // I am returning a success response informing the client the password has been reset.
+        res.status(200).json({
+            success: true,
+            message: 'Password reset successfully! You can now sign in with your new password.'
+        });
+    // I am catching any unexpected server errors.
+    } catch (error) {
+        res.status(500).json({
+            field: 'general',
+            message: error.message || 'An error occurred while resetting the password.'
+        });
+    }
+// I am closing the resetPassword function.
+};
+
 // I am exporting the controller functions for use in routes.
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser, loginUser, resetPassword };

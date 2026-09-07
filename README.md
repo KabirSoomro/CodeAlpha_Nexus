@@ -8,29 +8,16 @@
     <i>Built with precision, high-performance architecture, and a modern glassmorphic UI as part of the CodeAlpha Internship.</i>
   </p>
 
-  <!-- ============================================== -->
-  <!-- 🚀 PROMINENT HERO CTA: LIVE WEB APP ACCESS     -->
-  <!-- ============================================== -->
+  <!-- Primary Action Badges -->
   <p align="center">
     <a href="https://your-live-deployment-url.com" target="_blank">
-      <img src="https://img.shields.io/badge/🚀_LAUNCH_LIVE_WEBSITE-VISIT_NEXUS_NOW-6366F1?style=for-the-badge&logo=rocket&logoColor=white&labelColor=1E1B4B" height="48" alt="Launch Live App" />
-    </a>
-  </p>
-
-  <p align="center">
-    <b>🌐 Live Production Link:</b> <a href="https://your-live-deployment-url.com" target="_blank"><code>https://your-live-deployment-url.com</code></a>
-  </p>
-
-  <!-- Action Badges / Quick Links -->
-  <p align="center">
-    <a href="https://your-live-deployment-url.com" target="_blank">
-      <img src="https://img.shields.io/badge/🟢_Status-Live_&_Operational-10B981?style=for-the-badge&logo=statuspage&logoColor=white" alt="Live Status" />
+      <img src="https://img.shields.io/badge/🚀_Live_Demo-Visit_Web_App-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
     </a>
     <a href="https://www.linkedin.com/posts/your-linkedin-video-link" target="_blank">
-      <img src="https://img.shields.io/badge/🎥_Live_Demo_Video-Watch_on_LinkedIn-E11D48?style=for-the-badge&logo=youtube&logoColor=white" alt="Live Demo Video Badge" />
+      <img src="https://img.shields.io/badge/🎥_Demo_Video-Watch_on_LinkedIn-E11D48?style=for-the-badge&logo=youtube&logoColor=white" alt="Live Demo Video" />
     </a>
     <a href="https://www.linkedin.com/in/kabeersoomro" target="_blank">
-      <img src="https://img.shields.io/badge/💼_Developer-Kabeer_Soomro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile Badge" />
+      <img src="https://img.shields.io/badge/💼_Developer-Kabeer_Soomro-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
     </a>
   </p>
 
@@ -46,23 +33,6 @@
   </p>
 
 </div>
-
----
-
-## 🌐 Quick Access & Live Deployment
-
-> [!TIP]
-> ### 🔗 Experience The Live Application
-> Click the button below or open the live URL directly in any web browser to test the full Kanban workspace:
->
-> <div align="center">
->
-> [![Launch Nexus Live App](https://img.shields.io/badge/🚀_Open_Nexus_Live_Web_App-6366F1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://your-live-deployment-url.com)
->
-> **Direct Production URL:** `https://your-live-deployment-url.com`
-> </div>
->
-> *Deployable seamlessly on [Render](https://render.com/), [Railway](https://railway.app/), [Vercel](https://vercel.com/), [Heroku](https://www.heroku.com/), or [AWS](https://aws.amazon.com/) with zero configuration changes.*
 
 ---
 

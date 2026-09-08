@@ -18,13 +18,20 @@ router.post('/reset-password', resetPassword);
 
 // I am defining a GET route to safely check if email SMTP is configured in the environment.
 router.get('/status', (req, res) => {
-    // I am checking if both EMAIL_USER and EMAIL_PASS are present.
-    const isConfigured = Boolean(process.env.EMAIL_USER && process.env.EMAIL_PASS);
-    // I am returning the configuration status without exposing sensitive credentials.
+    // I am resolving email credentials with case-insensitive fallbacks.
+    const rawUser = process.env.EMAIL_USER || process.env.email_user || process.env.Email_User || process.env.EMAIL || process.env.GMAIL_USER;
+    const rawPass = process.env.EMAIL_PASS || process.env.email_pass || process.env.Email_Pass || process.env.EMAIL_PASSWORD || process.env.APP_PASSWORD || process.env.GMAIL_PASS;
+    const isConfigured = Boolean(rawUser && rawPass);
+
+    // I am returning the configuration status and listing detected env key names safely.
     res.json({
         ok: true,
         smtpConfigured: isConfigured,
-        sender: isConfigured ? `${process.env.EMAIL_USER.slice(0, 3)}***@gmail.com` : 'Not Configured'
+        sender: isConfigured ? `${rawUser.slice(0, 3)}***@gmail.com` : 'Not Configured',
+        envKeysDetected: Object.keys(process.env).filter(k => {
+            const lk = k.toLowerCase();
+            return lk.includes('email') || lk.includes('pass') || lk.includes('gmail');
+        })
     });
 });
 

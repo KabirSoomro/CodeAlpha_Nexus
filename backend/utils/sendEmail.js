@@ -3,13 +3,18 @@ const nodemailer = require('nodemailer');
 
 // I am defining a utility function to send password recovery emails.
 const sendEmail = async (options) => {
+    // I am resolving the email user from environment variables with case-insensitive fallbacks.
+    const rawUser = process.env.EMAIL_USER || process.env.email_user || process.env.Email_User || process.env.EMAIL || process.env.GMAIL_USER;
+    // I am resolving the email password from environment variables with case-insensitive fallbacks.
+    const rawPass = process.env.EMAIL_PASS || process.env.email_pass || process.env.Email_Pass || process.env.EMAIL_PASSWORD || process.env.APP_PASSWORD || process.env.GMAIL_PASS;
+
     // I am checking if SMTP credentials exist in the environment variables.
-    const hasSmtpConfig = process.env.EMAIL_USER && process.env.EMAIL_PASS;
+    const hasSmtpConfig = Boolean(rawUser && rawPass);
 
     if (hasSmtpConfig) {
         // I am sanitizing email and removing spaces from app passwords.
-        const cleanUser = process.env.EMAIL_USER.trim();
-        const cleanPass = process.env.EMAIL_PASS.replace(/\s+/g, '');
+        const cleanUser = rawUser.trim();
+        const cleanPass = rawPass.replace(/\s+/g, '');
 
         // I am creating a transporter configured with Gmail SMTP.
         const transporter = nodemailer.createTransport({

@@ -16,15 +16,19 @@ const sendEmail = async (options) => {
         const cleanUser = rawUser.trim();
         const cleanPass = rawPass.replace(/\s+/g, '');
 
-        // I am creating a transporter configured with Gmail SMTP.
+        // I am creating a transporter explicitly enforcing IPv4 (family: 4) to prevent Render IPv6 network errors.
         const transporter = nodemailer.createTransport({
-            service: process.env.EMAIL_SERVICE || 'gmail',
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true,
             auth: {
                 // I am using the sanitized email address.
                 user: cleanUser,
                 // I am using the sanitized app password.
                 pass: cleanPass
-            }
+            },
+            // I am forcing IPv4 connection because Render free-tier containers do not support outbound IPv6.
+            family: 4
         });
 
         // I am defining the email dispatch payload.

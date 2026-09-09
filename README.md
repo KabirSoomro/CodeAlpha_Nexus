@@ -10,7 +10,7 @@
 
   <!-- Primary Action Badges -->
   <p align="center">
-    <a href="https://code-alpha-nexus-laqo.vercel.app" target="_blank">
+    <a href="https://https://code-alpha-nexus-nine.vercel.app/" target="_blank">
       <img src="https://img.shields.io/badge/Live_Demo-6366F1?style=for-the-badge&logo=rocket&logoColor=white" alt="Live Demo" />
     </a>
     <a href="https://www.youtube.com" target="_blank">
@@ -59,10 +59,10 @@ Click below to test the full Kanban workspace live in your browser:
 
 | Resource | Platform | Status | Direct Link |
 | :--- | :--- | :--- | :--- |
-| **Live Web App** | **Vercel** | ![Online](https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square) | [https://code-alpha-nexus-laqo.vercel.app](https://code-alpha-nexus-laqo.vercel.app) |
+| **Live Web App** | **Vercel** | ![Online](https://img.shields.io/badge/Status-Online-brightgreen?style=flat-square) | [https://code-alpha-nexus-laqo.vercel.app](https://https://code-alpha-nexus-nine.vercel.app/) |
 | **Source Repository** | **GitHub** | ![Public](https://img.shields.io/badge/Repo-Public-blue?style=flat-square) | [KabirSoomro/CodeAlpha_Nexus](https://github.com/KabirSoomro/CodeAlpha_Nexus) |
 
-> 💡 **Instant Access:** Click the **[Live Web App](https://code-alpha-nexus-laqo.vercel.app)** link above to test instant signup, project creation, task management, and drag-and-drop Kanban synchronization in real-time.
+> 💡 **Instant Access:** Click the **[Live Web App](https://code-alpha-nexus-nine.vercel.app/)** link above to test instant signup, project creation, task management, and drag-and-drop Kanban synchronization in real-time.
 
 ---
 
